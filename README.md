@@ -11,18 +11,21 @@ Incluye:
 
 ---
 
-## 🚀 Instalación en un Omarchy limpio
+## 🚀 Instalación Rápida (Un solo comando)
 
-1. Clona este repositorio:
+Puedes instalarlo directamente en tu terminal ejecutando esta sola línea:
+
 ```bash
-git clone https://github.com/lizarbe513/Lizarbe-Omarchy-Theme.git
-cd Lizarbe-Omarchy-Theme
+git clone https://github.com/lizarbe513/Lizarbe-Omarchy-Theme.git && cd Lizarbe-Omarchy-Theme && ./install.sh
 ```
 
-2. Ejecuta el instalador interactivo:
-```bash
-./install.sh
-```
+> [!TIP]
+> Si prefieres la instalación manual paso a paso:
+> ```bash
+> git clone https://github.com/lizarbe513/Lizarbe-Omarchy-Theme.git
+> cd Lizarbe-Omarchy-Theme
+> ./install.sh
+> ```
 
 El instalador te preguntará qué suites deseas instalar en ese equipo específico.
 
