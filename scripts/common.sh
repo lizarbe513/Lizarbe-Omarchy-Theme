@@ -25,11 +25,19 @@ error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Sincronizar bases de datos de pacman para evitar que yay busque dependencias oficiales en AUR
+# Sincronizar y actualizar usando el actualizador nativo de Omarchy
 sync_repos() {
     if [[ "${REPOS_SYNCED:-0}" != "1" ]]; then
-        info "Sincronizando bases de datos de repositorios oficiales (pacman -Sy)..."
-        sudo pacman -Sy --noconfirm || true
+        if command -v omarchy &>/dev/null; then
+            info "Actualizando sistema, keyrings y repositorios con Omarchy (omarchy update -y)..."
+            omarchy update -y || {
+                warn "omarchy update terminó con observaciones. Asegurando sincronización con pacman..."
+                sudo pacman -Sy --noconfirm || true
+            }
+        else
+            info "Sincronizando bases de datos de repositorios de Arch (pacman -Sy)..."
+            sudo pacman -Sy --noconfirm || true
+        fi
         export REPOS_SYNCED=1
     fi
 }
