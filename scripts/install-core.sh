@@ -62,3 +62,10 @@ if command -v omarchy &>/dev/null; then
 fi
 
 success "Tema Lizarbe instalado y aplicado de forma 100% nativa y fluida."
+echo ""
+echo -e "${YELLOW}💡 Recomendación (Tema GTK Darky):${NC}"
+echo -e "   El tema GTK Darky ha quedado preinstalado en el sistema."
+echo -e "   Si deseas activarlo en tus aplicaciones GTK:"
+echo -e "   1. Abre el gestor de apariencia: ejecuta ${CYAN}nwg-look${NC} en la terminal (o desde el menú)."
+echo -e "   2. En la pestaña 'Widget', selecciona ${CYAN}Darky${NC} y haz clic en ${GREEN}Apply${NC}."
+echo ""

@@ -61,7 +61,7 @@ bash scripts/install-core.sh
 * Tema Omarchy `Lizarbe` con wallpapers pixel art e iconos de barra en rojo
 * Pack de iconos propio `Lizarbe-Red`
 * **Zen Browser**: Navegador web predeterminado configurado nativamente con Omarchy
-* Tema GTK `Darky` copiado a `~/.local/share/themes/` (sin forzarse)
+* Tema GTK `Darky` copiado a `~/.local/share/themes/` (opcional: actívalo abriendo `nwg-look` > Widget > `Darky`)
 * `fastfetch` con logo personalizado, `starship` (estilo limpio Omarchy), `nwg-look`, `htop`, `kdeconnect`
 
 ### 2. Creatividad 2D (`scripts/install-2d.sh`)
