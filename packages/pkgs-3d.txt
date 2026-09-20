@@ -1,0 +1,6 @@
+# Suite Creativa 3D & CAD (Modelado, Construcción y Motores)
+# Nota: Recomendado para equipos con GPU dedicada
+blender
+freecad
+godot
+blockbench-bin

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="48px" height="48px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <linearGradient id="linearGradient104" x1="24" x2="24" y1="1.3492" y2="46.651" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ff3333" offset="0"/>
+   <stop stop-color="#ff0000" stop-opacity=".99" offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient106" x1="24" x2="24" y1="1.3492" y2="46.651" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#330000" offset="0"/>
+   <stop offset="1"/>
+  </linearGradient>
+  <linearGradient id="linearGradient9" x1="23.926" x2="23.926" y1="3.1288" y2="44.798" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#cc0000" offset="0"/>
+   <stop stop-color="#990000" offset="1"/>
+  </linearGradient>
+  <filter id="filter12" x="-.46078" y="-.71063" width="1.9216" height="2.4213" color-interpolation-filters="sRGB">
+   <feBlend in2="SourceGraphic" result="result3"/>
+   <feComposite in2="result3" k2="1" operator="arithmetic" result="result4"/>
+   <feColorMatrix in="result4" result="result0" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.85 0 "/>
+   <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+   <feSpecularLighting result="result1" specularExponent="25" surfaceScale="5">
+    <feDistantLight azimuth="225" elevation="50"/>
+   </feSpecularLighting>
+   <feComposite in2="result0" k1="0.5" k2="1" k3="0.5" operator="arithmetic"/>
+   <feComposite in2="result0" operator="atop" result="result2"/>
+   <feGaussianBlur in="result2" stdDeviation="1"/>
+   <feComposite in2="SourceGraphic" operator="in"/>
+  </filter>
+ </defs>
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Luca Ferretti &lt;elle.uca@libero.it&gt;</dc:title>
+     </cc:Agent>
+    </dc:creator>
+    <dc:subject>
+     <rdf:Bag>
+      <rdf:li>keyboard device input</rdf:li>
+     </rdf:Bag>
+    </dc:subject>
+    <dc:description>A keybord</dc:description>
+    <cc:license rdf:resource="http://creativecommons.org/licenses/LGPL/2.1/"/>
+   </cc:Work>
+   <cc:License rdf:about="http://creativecommons.org/licenses/LGPL/2.1/">
+    <cc:permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+    <cc:permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+    <cc:requires rdf:resource="http://web.resource.org/cc/Notice"/>
+    <cc:permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+    <cc:requires rdf:resource="http://web.resource.org/cc/ShareAlike"/>
+    <cc:requires rdf:resource="http://web.resource.org/cc/SourceCode"/>
+   </cc:License>
+  </rdf:RDF>
+ </metadata>
+ <g>
+  <rect x="3.092" y="10.454" width="41.669" height="27.018" ry=".44172" fill="url(#linearGradient9)" filter="url(#filter12)"/>
+  <g fill="url(#linearGradient106)" stroke="url(#linearGradient104)">
+   <path d="m3.748 9.3418c-1.2733 0-2.2988 1.1241-2.2988 2.5195v24.277c0 1.3955 1.0256 2.5195 2.2988 2.5195h40.504c1.2733 0 2.2988-1.1241 2.2988-2.5195v-24.277c0-1.3955-1.0256-2.5195-2.2988-2.5195h-40.504zm2.291 1.6582h35.922c1.1293 0 2.0391 0.99671 2.0391 2.2344v21.531c0 1.2377-0.90979 2.2344-2.0391 2.2344h-35.922c-1.1293 0-2.0391-0.99671-2.0391-2.2344v-21.531c0-1.2377 0.90979-2.2344 2.0391-2.2344z" fill-rule="evenodd" stroke-width=".5"/>
+   <g stroke-linecap="round" stroke-width=".2">
+    <rect x="6.9202" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="13.02" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="19.02" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="25.02" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="31.02" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="36.92" y="14.061" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="10.02" y="21" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="16.02" y="21" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="22.02" y="21" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="28.02" y="21" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="34.02" y="21" width="3.9755" height="3.9755" ry=".44172"/>
+    <rect x="6.9202" y="27.902" width="5.0061" height="4.1227" ry=".44172"/>
+    <rect x="35.92" y="27.902" width="5.0061" height="4.1227" ry=".44172"/>
+    <rect x="14.65" y="27.902" width="18.699" height="4.0491" ry=".44172"/>
+   </g>
+  </g>
+ </g>
+</svg>

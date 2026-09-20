@@ -1,0 +1,8 @@
+# Paquetes base y utilidades visuales / sistema
+fastfetch
+starship
+nwg-look
+htop
+kdeconnect
+breeze-icons
+gnome-themes-extra

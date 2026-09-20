@@ -1,0 +1,7 @@
+# Suite Desarrollo & Construcción de Software
+visual-studio-code-bin
+git
+lazygit
+docker
+docker-compose
+lazydocker

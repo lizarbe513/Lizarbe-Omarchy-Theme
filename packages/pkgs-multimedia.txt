@@ -1,0 +1,4 @@
+# Suite Multimedia & Audio/Video
+kdenlive
+obs-studio
+audacity

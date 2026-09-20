@@ -1,0 +1,44 @@
+add_newline = true
+command_timeout = 200
+format = "$username$hostname$directory$git_branch$git_status$character"
+
+[username]
+show_always = true
+style_user = "bold #E31B23"
+style_root = "bold #FF333D"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+format = "[@](bold #E31B23)[$hostname](bold #FFFFFF)[:](bold #E31B23)"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+style = "bold #DCE1EC"
+read_only = " 󰌾"
+read_only_style = "#E31B23"
+format = "[$path]($style) "
+
+[character]
+error_symbol = "\n[>](bold #FF333D) "
+success_symbol = "\n[>](bold #E31B23) "
+
+[git_branch]
+format = "[$branch]($style) "
+style = "italic #515562"
+
+[git_status]
+format = "[$all_status]($style)"
+style = "#E31B23"
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count}⇣${behind_count} "
+behind = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked = "? "
+modified = " "
+stashed = ""
+staged = ""
+renamed = ""
+deleted = ""

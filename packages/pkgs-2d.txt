@@ -1,0 +1,5 @@
+# Suite Creativa 2D (Ilustración, Pixel Art y Diseño Vectorial)
+krita
+libresprite
+inkscape
+pinta

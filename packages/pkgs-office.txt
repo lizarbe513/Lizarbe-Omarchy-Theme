@@ -1,0 +1,5 @@
+# Suite Ofimática, Notas y Gestión de Proyectos
+onlyoffice-bin
+obsidian
+xournalpp
+libreoffice-fresh
