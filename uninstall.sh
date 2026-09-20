@@ -99,6 +99,12 @@ uninstall_theme() {
         rm -f "$HOME/.icons/Lizarbe-Red"
     fi
 
+    # 6. Eliminar tema GTK Darky
+    if [[ -d "$HOME/.local/share/themes/Darky" ]]; then
+        info "Eliminando tema GTK Darky..."
+        rm -rf "$HOME/.local/share/themes/Darky"
+    fi
+
     success "Tema Lizarbe revertido y desinstalado exitosamente."
 }
 

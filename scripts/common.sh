@@ -25,28 +25,10 @@ error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Sincronizar y actualizar usando el actualizador nativo de Omarchy
-sync_repos() {
-    if [[ "${REPOS_SYNCED:-0}" != "1" ]]; then
-        if command -v omarchy &>/dev/null; then
-            info "Actualizando sistema, keyrings y repositorios con Omarchy (omarchy update -y)..."
-            omarchy update -y || {
-                warn "omarchy update terminó con observaciones. Asegurando sincronización con pacman..."
-                sudo pacman -Sy --noconfirm || true
-            }
-        else
-            info "Sincronizando bases de datos de repositorios de Arch (pacman -Sy)..."
-            sudo pacman -Sy --noconfirm || true
-        fi
-        export REPOS_SYNCED=1
-    fi
-}
-
 # Comprobar que yay esté disponible
 check_aur_helper() {
-    sync_repos
     if ! command -v yay &>/dev/null; then
-        warn "yay no está instalado. Intentando instalar paquetes con pacman..."
+        warn "yay no está instalado. Utilizando pacman..."
         AUR_HELPER="sudo pacman -S --needed --noconfirm"
     else
         AUR_HELPER="yay -S --needed --noconfirm"

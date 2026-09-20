@@ -42,7 +42,14 @@ if [[ -d "$REPO_DIR/icons/Lizarbe-Red" ]]; then
     fi
 fi
 
-# 6. Aplicar tema de forma nativa e instantánea a través de Omarchy
+# 6. Instalar tema GTK Darky (disponible en el sistema para cuando el usuario desee activarlo)
+if [[ -d "$REPO_DIR/themes/Darky" ]]; then
+    info "Instalando tema GTK Darky en ~/.local/share/themes/ (sin aplicar)..."
+    mkdir -p "$HOME/.local/share/themes"
+    cp -r "$REPO_DIR/themes/Darky" "$HOME/.local/share/themes/"
+fi
+
+# 7. Aplicar tema de forma nativa e instantánea a través de Omarchy
 if command -v omarchy &>/dev/null; then
     info "Aplicando tema Lizarbe con omarchy theme set..."
     omarchy theme set lizarbe || true
