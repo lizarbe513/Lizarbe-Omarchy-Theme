@@ -89,3 +89,17 @@ bash scripts/install-core.sh
 
 ---
 
+## 🔄 Desinstalación y Reversión Limpia
+
+Si deseas remover paquetes o volver al tema oficial de Omarchy, cuentas con el script `./uninstall.sh`:
+
+```bash
+# Asistente interactivo guiado:
+./uninstall.sh
+
+# O mediante opciones directas:
+./uninstall.sh --theme-only    # Elimina el tema Lizarbe, Darky GTK, iconos y restaura el tema oficial
+./uninstall.sh --apps-only     # Desinstala las suites de aplicaciones (conservando el tema)
+./uninstall.sh --all           # Remueve absolutamente todo y deja Omarchy en su estado base
+```
+
