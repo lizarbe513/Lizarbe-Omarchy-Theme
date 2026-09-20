@@ -11,8 +11,8 @@ Uso: ./uninstall.sh [OPCIONES]
 Desinstalador para Omarchy - Setup Lizarbe (Tema y Suites de Software).
 
 Opciones:
-  --all           Desinstala todo (tema, iconos, configuraciones y aplicaciones)
-  --theme-only    Desinstala únicamente el tema Lizarbe, iconos, GTK Darky y restaura el tema oficial
+  --all           Desinstala todo (tema, configuraciones y aplicaciones)
+  --theme-only    Desinstala únicamente el tema Lizarbe y restaura el tema oficial
   --apps-only     Desinstala únicamente las suites de software (2D, 3D, Dev, Ofimática, Multimedia, Webapps)
   --2d            Desinstala únicamente la Suite 2D
   --3d            Desinstala únicamente la Suite 3D
@@ -36,7 +36,6 @@ remove_pkg_file() {
     local pkgs=()
     while IFS= read -r line || [[ -n "$line" ]]; do
         line="$(echo "$line" | sed -e 's/#.*//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
-        # Proteger paquetes esenciales
         if [[ -n "$line" && "$line" != "git" && "$line" != "bash" && "$line" != "sudo" ]]; then
             pkgs+=("$line")
         fi
@@ -87,48 +86,13 @@ uninstall_theme() {
     rm -f "$HOME/.config/omarchy/branding/logo.png"
     rm -f "$HOME/.config/omarchy/branding/screensaver.txt"
 
-    # 4. Eliminar hook set-darky.sh
-    if [[ -f "$HOME/.config/omarchy/hooks/theme-set.d/set-darky.sh" ]]; then
-        info "Eliminando hook de sincronización set-darky.sh..."
-        rm -f "$HOME/.config/omarchy/hooks/theme-set.d/set-darky.sh"
-    fi
-
-    # 5. Limpiar tema GTK Darky y enlaces en GTK4
-    info "Eliminando tema GTK Darky..."
-    rm -rf "$HOME/.local/share/themes/Darky"
-    rm -f "$HOME/.config/darkyrc"
-
-    local gtk4_dir="$HOME/.config/gtk-4.0"
-    if [[ -L "$gtk4_dir/gtk.css" && "$(readlink -f "$gtk4_dir/gtk.css")" == *Darky* ]]; then
-        rm -f "$gtk4_dir/gtk.css"
-    fi
-    if [[ -L "$gtk4_dir/gtk-dark.css" && "$(readlink -f "$gtk4_dir/gtk-dark.css")" == *Darky* ]]; then
-        rm -f "$gtk4_dir/gtk-dark.css"
-    fi
-    if [[ -L "$gtk4_dir/assets" && "$(readlink -f "$gtk4_dir/assets")" == *Darky* ]]; then
-        rm -f "$gtk4_dir/assets"
-    fi
-
-    # 6. Eliminar pack de iconos Lizarbe-Red
-    info "Eliminando pack de iconos Lizarbe-Red..."
-    rm -rf "$HOME/.local/share/icons/Lizarbe-Red"
-    rm -f "$HOME/.icons/Lizarbe-Red"
-
-    # 7. Limpiar Fastfetch personalizado
+    # 4. Limpiar Fastfetch personalizado
     if [[ -d "$HOME/.config/fastfetch" ]]; then
         info "Limpiando configuración de Fastfetch..."
         rm -f "$HOME/.config/fastfetch/logo.txt"
     fi
 
-    # 8. Notificar a Nautilus y recargar shell
-    if command -v nautilus &>/dev/null; then
-        nautilus -q >/dev/null 2>&1 || true
-    fi
-    if command -v omarchy-restart-shell &>/dev/null; then
-        omarchy-restart-shell >/dev/null 2>&1 || true
-    fi
-
-    success "Tema Lizarbe y personalizaciones visuales desinstalados exitosamente."
+    success "Tema Lizarbe revertido y desinstalado exitosamente."
 }
 
 uninstall_webapps() {
@@ -238,7 +202,7 @@ else
         fi
     }
 
-    if ask_yes_no "¿Deseas desinstalar el Tema Lizarbe, Iconos y Darky GTK (restaura tema oficial)?" "N"; then
+    if ask_yes_no "¿Deseas desinstalar el Tema Lizarbe (restaura tema oficial)?" "N"; then
         UNINSTALL_THEME=true
     fi
 
@@ -270,7 +234,7 @@ fi
 # Resumen antes de proceder
 echo ""
 info "=== Resumen de Componentes a Desinstalar ==="
-echo -e "  - Tema Lizarbe & Darky:      $([[ "$UNINSTALL_THEME" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
+echo -e "  - Tema Lizarbe:              $([[ "$UNINSTALL_THEME" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
 echo -e "  - Suite Creativa 2D:         $([[ "$UNINSTALL_2D" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
 echo -e "  - Suite Creativa 3D & CAD:   $([[ "$UNINSTALL_3D" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
 echo -e "  - Suite de Desarrollo:       $([[ "$UNINSTALL_DEV" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
@@ -279,14 +243,12 @@ echo -e "  - Suite Multimedia:          $([[ "$UNINSTALL_MULTIMEDIA" == true ]] 
 echo -e "  - Webapps:                   $([[ "$UNINSTALL_WEBAPPS" == true ]] && echo -e "${RED}DESINSTALAR${NC}" || echo -e "${GREEN}CONSERVAR${NC}")"
 echo ""
 
-# Confirmación final
 read -rp "¿Confirmas la desinstalación de los elementos seleccionados? [s/N]: " confirm
 if [[ ! "$confirm" =~ ^[SsYy]$ ]]; then
     warn "Operación cancelada por el usuario. No se realizaron cambios."
     exit 0
 fi
 
-# Ejecutar desinstalaciones
 [[ "$UNINSTALL_2D" == true ]]         && remove_pkg_file "$SCRIPT_DIR/packages/pkgs-2d.txt" "Suite Creativa 2D"
 [[ "$UNINSTALL_3D" == true ]]         && remove_pkg_file "$SCRIPT_DIR/packages/pkgs-3d.txt" "Suite Creativa 3D & CAD"
 [[ "$UNINSTALL_DEV" == true ]]        && remove_pkg_file "$SCRIPT_DIR/packages/pkgs-dev.txt" "Suite de Desarrollo"

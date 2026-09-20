@@ -10,45 +10,31 @@ info "=== Instalando Configuración Base y Tema Lizarbe ==="
 # 1. Instalar paquetes base
 install_pkg_file "$REPO_DIR/packages/pkgs-core.txt" "Paquetes Base del Sistema"
 
-# 2. Copiar configuraciones a ~/.config
-info "Copiando dotfiles y configuraciones..."
-mkdir -p "$HOME/.config"
-cp -r "$REPO_DIR/config/omarchy" "$HOME/.config/"
-cp -r "$REPO_DIR/config/fastfetch" "$HOME/.config/"
+# 2. Copiar tema Lizarbe a la carpeta de temas de Omarchy
+info "Instalando tema nativo Lizarbe en ~/.config/omarchy/themes/..."
+mkdir -p "$HOME/.config/omarchy/themes"
+cp -r "$REPO_DIR/config/omarchy/themes/lizarbe" "$HOME/.config/omarchy/themes/"
+
+# 3. Copiar branding (logo y acerca de)
+if [[ -d "$REPO_DIR/config/omarchy/branding" ]]; then
+    info "Copiando branding personalizado..."
+    mkdir -p "$HOME/.config/omarchy/branding"
+    cp -r "$REPO_DIR/config/omarchy/branding/"* "$HOME/.config/omarchy/branding/"
+fi
+
+# 4. Copiar configuración de Fastfetch y Starship
+info "Configurando Fastfetch y terminal..."
+mkdir -p "$HOME/.config/fastfetch"
+cp -r "$REPO_DIR/config/fastfetch/"* "$HOME/.config/fastfetch/"
+
 if [[ -f "$REPO_DIR/config/starship.toml" ]]; then
     cp "$REPO_DIR/config/starship.toml" "$HOME/.config/"
 fi
-if [[ -f "$REPO_DIR/config/darkyrc" ]]; then
-    cp "$REPO_DIR/config/darkyrc" "$HOME/.config/"
-fi
 
-# 3. Permisos de hooks
-if [[ -f "$HOME/.config/omarchy/hooks/theme-set.d/set-darky.sh" ]]; then
-    chmod +x "$HOME/.config/omarchy/hooks/theme-set.d/set-darky.sh"
-fi
-
-# 4. Instalar tema GTK Darky
-info "Instalando tema GTK Darky..."
-mkdir -p "$HOME/.local/share/themes"
-cp -r "$REPO_DIR/themes/Darky" "$HOME/.local/share/themes/"
-
-# 5. Instalar Iconos
-info "Instalando tema de iconos Lizarbe-Red..."
-mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
-cp -r "$REPO_DIR/icons/Lizarbe-Red" "$HOME/.local/share/icons/"
-
-# Enlace simbólico en ~/.icons para compatibilidad con aplicaciones antiguas
-ln -sf "$HOME/.local/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red"
-
-# Actualizar caché de iconos
-if command -v gtk-update-icon-cache &>/dev/null; then
-    gtk-update-icon-cache -f "$HOME/.local/share/icons/Lizarbe-Red" >/dev/null 2>&1 || true
-fi
-
-# 6. Aplicar tema en Omarchy
+# 5. Aplicar tema de forma nativa e instantánea a través de Omarchy
 if command -v omarchy &>/dev/null; then
     info "Aplicando tema Lizarbe con omarchy theme set..."
     omarchy theme set lizarbe || true
 fi
 
-success "Base y tema Lizarbe instalados y configurados con éxito."
+success "Tema Lizarbe instalado y aplicado de forma 100% nativa y fluida."
