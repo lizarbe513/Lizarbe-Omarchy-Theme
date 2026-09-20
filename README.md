@@ -14,8 +14,8 @@ Incluye:
 
 1. Clona este repositorio:
 ```bash
-git clone https://github.com/TU_USUARIO/omarchy-lizarbe.git
-cd omarchy-lizarbe
+git clone https://github.com/lizarbe513/Lizarbe-Omarchy-Theme.git
+cd Lizarbe-Omarchy-Theme
 ```
 
 2. Ejecuta el instalador interactivo:
@@ -89,17 +89,3 @@ bash scripts/install-core.sh
 
 ---
 
-## 📤 Subir este repositorio a GitHub
-
-Para sincronizar este repositorio con tu cuenta de GitHub:
-
-1. Crea un repositorio vacío en GitHub (por ejemplo llamado `omarchy-lizarbe`).
-2. En esta carpeta, inicializa y sube los cambios:
-```bash
-git init
-git add .
-git commit -m "feat: setup inicial omarchy lizarbe modular"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/omarchy-lizarbe.git
-git push -u origin main
-```
