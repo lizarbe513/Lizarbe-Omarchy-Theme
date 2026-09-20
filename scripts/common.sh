@@ -25,8 +25,18 @@ error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
+# Sincronizar bases de datos de pacman para evitar que yay busque dependencias oficiales en AUR
+sync_repos() {
+    if [[ "${REPOS_SYNCED:-0}" != "1" ]]; then
+        info "Sincronizando bases de datos de repositorios oficiales (pacman -Sy)..."
+        sudo pacman -Sy --noconfirm || true
+        export REPOS_SYNCED=1
+    fi
+}
+
 # Comprobar que yay esté disponible
 check_aur_helper() {
+    sync_repos
     if ! command -v yay &>/dev/null; then
         warn "yay no está instalado. Intentando instalar paquetes con pacman..."
         AUR_HELPER="sudo pacman -S --needed --noconfirm"
