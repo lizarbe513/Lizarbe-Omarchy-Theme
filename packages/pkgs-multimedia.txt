@@ -1,4 +1,7 @@
 # Suite Multimedia & Audio/Video
 kdenlive
+shotcut
+davinci-resolve
 obs-studio
 audacity
+

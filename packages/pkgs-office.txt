@@ -1,5 +1,7 @@
 # Suite Ofimática, Notas y Gestión de Proyectos
 onlyoffice-bin
+genoffice-bin
 obsidian
 xournalpp
 libreoffice-fresh
+

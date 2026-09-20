@@ -57,8 +57,9 @@ bash scripts/install-core.sh
 ### 1. Base del Sistema & Tema Lizarbe (`scripts/install-core.sh`)
 * Tema Omarchy `Lizarbe` con wallpapers pixel art e iconos de barra en rojo
 * Pack de iconos propio `Lizarbe-Red`
+* **Zen Browser**: Navegador web predeterminado configurado nativamente con Omarchy
 * Tema GTK `Darky` copiado a `~/.local/share/themes/` (sin forzarse)
-* `fastfetch` con logo personalizado, `starship`, `nwg-look`, `htop`, `kdeconnect`
+* `fastfetch` con logo personalizado, `starship` (estilo limpio Omarchy), `nwg-look`, `htop`, `kdeconnect`
 
 ### 2. Creatividad 2D (`scripts/install-2d.sh`)
 * **Krita**: Pintura digital e ilustración
@@ -79,15 +80,30 @@ bash scripts/install-core.sh
 * **Docker** y **Lazydocker**: Contenedores y servicios locales
 
 ### 5. Ofimática & Productividad (`scripts/install-office.sh`)
+* **genOffice**: Suite ofimática moderna potenciada por IA (Genspark)
 * **ONLYOFFICE Desktop**: Documentos, hojas de cálculo y presentaciones MS Office
 * **LibreOffice**: Suite ofimática offline
 * **Obsidian**: Notas y gestión de proyectos en Markdown
 * **Xournal++**: Notas manuscritas y bocetos con tableta
 
-### 6. Multimedia & Audio (`scripts/install-multimedia.sh`)
-* **Kdenlive**: Edición de video
-* **OBS Studio**: Grabación y captura de pantalla
+### 6. Multimedia & Audio/Video (`scripts/install-multimedia.sh`)
+* **DaVinci Resolve**: Edición, corrección de color y postproducción profesional
+* **Kdenlive**: Edición de video multipista
+* **Shotcut**: Editor de video rápido, ligero y simple
+* **OBS Studio**: Grabación y streaming
 * **Audacity**: Edición de audio
+
+---
+
+## ⚡ Actualizaciones Rápidas (`./update.sh`)
+
+Para actualizar el tema, iconos, configs y dotfiles sin tener que reinstalar todo ni pasar por los instaladores de paquetes:
+
+```bash
+./update.sh
+```
+
+Este comando descarga los últimos cambios con `git pull`, actualiza los archivos del tema, iconos y recarga el shell en vivo al instante.
 
 ---
 

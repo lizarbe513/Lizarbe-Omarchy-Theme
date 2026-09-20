@@ -49,7 +49,13 @@ if [[ -d "$REPO_DIR/themes/Darky" ]]; then
     cp -r "$REPO_DIR/themes/Darky" "$HOME/.local/share/themes/"
 fi
 
-# 7. Aplicar tema de forma nativa e instantánea a través de Omarchy
+# 7. Configurar Zen Browser como predeterminado
+if command -v omarchy-default-browser &>/dev/null; then
+    info "Estableciendo Zen Browser como navegador predeterminado de Omarchy..."
+    omarchy-default-browser zen || true
+fi
+
+# 8. Aplicar tema de forma nativa e instantánea a través de Omarchy
 if command -v omarchy &>/dev/null; then
     info "Aplicando tema Lizarbe con omarchy theme set..."
     omarchy theme set lizarbe || true

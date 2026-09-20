@@ -8,4 +8,4 @@ source "$SCRIPT_DIR/common.sh"
 info "=== Instalando Suite Ofimática & Productividad ==="
 install_pkg_file "$REPO_DIR/packages/pkgs-office.txt" "Suite Ofimática y Notas"
 
-success "Herramientas ofimáticas listas: ONLYOFFICE, Obsidian, Xournal++ y LibreOffice."
+success "Herramientas ofimáticas listas: genOffice (IA), ONLYOFFICE, Obsidian, Xournal++ y LibreOffice."
