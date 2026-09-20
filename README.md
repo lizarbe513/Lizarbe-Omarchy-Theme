@@ -4,7 +4,7 @@ Configuración completa para un sistema **Omarchy** recién instalado, orientada
 
 Incluye:
 - **Tema personalizado Lizarbe**: Colores, fondos pixel art, previews, bordes y controles de shell.
-- **Tema GTK Darky & Packs de Iconos**: `Lizarbe-Red` y `Dedicated-to-Hackerer-Red`.
+- **Tema GTK Darky & Iconos**: `Lizarbe-Red` con integración visual nativa a Omarchy.
 - **Branding propio y Terminal**: Logo ASCII, fastfetch, starship y hooks automáticos.
 - **Instaladores modulares** organizados por suites independientes.
 

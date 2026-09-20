@@ -33,15 +33,12 @@ mkdir -p "$HOME/.local/share/themes"
 cp -r "$REPO_DIR/themes/Darky" "$HOME/.local/share/themes/"
 
 # 5. Instalar Iconos
-info "Instalando paquetes de iconos..."
+info "Instalando tema de iconos Lizarbe-Red..."
 mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
 cp -r "$REPO_DIR/icons/Lizarbe-Red" "$HOME/.local/share/icons/"
-cp -r "$REPO_DIR/icons/Dedicated-to-Hackerer-Red" "$HOME/.local/share/icons/"
 
-# Enlaces simbólicos en ~/.icons para compatibilidad con aplicaciones antiguas
+# Enlace simbólico en ~/.icons para compatibilidad con aplicaciones antiguas
 ln -sf "$HOME/.local/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red"
-ln -sf "$HOME/.local/share/icons/Dedicated-to-Hackerer-Red" "$HOME/.icons/Dedicated-to-Hackerer-Red"
-ln -sf "$HOME/.local/share/icons/Dedicated-to-Hackerer-Red" "$HOME/.icons/Dedicated to Hackerer (Red)"
 
 # Actualizar caché de iconos
 if command -v gtk-update-icon-cache &>/dev/null; then
