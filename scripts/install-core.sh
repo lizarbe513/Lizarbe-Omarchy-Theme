@@ -31,7 +31,18 @@ if [[ -f "$REPO_DIR/config/starship.toml" ]]; then
     cp "$REPO_DIR/config/starship.toml" "$HOME/.config/"
 fi
 
-# 5. Aplicar tema de forma nativa e instantánea a través de Omarchy
+# 5. Instalar tema de iconos Lizarbe-Red
+if [[ -d "$REPO_DIR/icons/Lizarbe-Red" ]]; then
+    info "Instalando tema de iconos Lizarbe-Red en ~/.local/share/icons/..."
+    mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
+    cp -r "$REPO_DIR/icons/Lizarbe-Red" "$HOME/.local/share/icons/"
+    ln -sf "$HOME/.local/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red"
+    if command -v gtk-update-icon-cache &>/dev/null; then
+        gtk-update-icon-cache -f "$HOME/.local/share/icons/Lizarbe-Red" >/dev/null 2>&1 || true
+    fi
+fi
+
+# 6. Aplicar tema de forma nativa e instantánea a través de Omarchy
 if command -v omarchy &>/dev/null; then
     info "Aplicando tema Lizarbe con omarchy theme set..."
     omarchy theme set lizarbe || true

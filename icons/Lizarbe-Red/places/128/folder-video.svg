@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <style type="text/css">
+      .ColorScheme-Text { color: #E31B23; }
+      .ColorScheme-Accent { color: #E31B23; }
+    </style>
+  </defs>
+  <path d="M 18.67 34.67 C 18.67 30.00 22.00 27.33 26.67 27.33 L 50.67 27.33 C 54.67 27.33 58.00 29.33 60.67 33.33 L 64.67 38.67 L 104.00 38.67 C 108.00 38.67 110.67 41.33 110.67 45.33 L 110.67 96.67 C 110.67 100.67 108.00 103.33 104.00 103.33 L 25.33 103.33 C 21.33 103.33 18.67 100.67 18.67 96.67 Z" fill="none" stroke="#E31B23" stroke-width="2.93" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="44.00" y="57.33" width="28.00" height="24.00" rx="2.67" fill="none" stroke="#E31B23" stroke-width="2.93" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 72.00 62.67 L 84.00 56.00 L 84.00 82.67 L 72.00 76.00 Z" fill="none" stroke="#E31B23" stroke-width="2.93" stroke-linejoin="round"/>
+</svg>

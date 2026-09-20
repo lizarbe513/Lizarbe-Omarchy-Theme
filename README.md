@@ -4,7 +4,7 @@ Configuración completa para un sistema **Omarchy** recién instalado, orientada
 
 Incluye:
 - **Tema nativo Lizarbe**: Colores, fondos pixel art, previews y bordes (100% integrado a la arquitectura de temas de Omarchy).
-- **Iconos y GTK nativos**: Integración directa con los iconos oficiales `Yaru-red` y el modo oscuro de Libadwaita sin retrasos.
+- **Pack de Iconos Lizarbe-Red**: Iconos rojos personalizados que se aplican y alternan de forma limpia y fluida.
 - **Branding propio y Terminal**: Logo ASCII personalizado en Fastfetch, starship prompt.
 - **Instaladores modulares** organizados por suites independientes.
 
@@ -55,7 +55,7 @@ bash scripts/install-core.sh
 
 ### 1. Base del Sistema & Tema Lizarbe (`scripts/install-core.sh`)
 * Tema Omarchy `Lizarbe` con wallpapers pixel art
-* Integración fluida con iconos `Yaru-red` y tema nativo
+* Pack de iconos propio `Lizarbe-Red`
 * `fastfetch` con logo personalizado, `starship`, `nwg-look`, `htop`, `kdeconnect`
 
 ### 2. Creatividad 2D (`scripts/install-2d.sh`)

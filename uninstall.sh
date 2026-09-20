@@ -92,6 +92,13 @@ uninstall_theme() {
         rm -f "$HOME/.config/fastfetch/logo.txt"
     fi
 
+    # 5. Eliminar tema de iconos Lizarbe-Red
+    if [[ -d "$HOME/.local/share/icons/Lizarbe-Red" ]]; then
+        info "Eliminando pack de iconos Lizarbe-Red..."
+        rm -rf "$HOME/.local/share/icons/Lizarbe-Red"
+        rm -f "$HOME/.icons/Lizarbe-Red"
+    fi
+
     success "Tema Lizarbe revertido y desinstalado exitosamente."
 }
 

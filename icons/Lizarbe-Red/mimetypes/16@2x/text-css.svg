@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style type="text/css">
+      .ColorScheme-Text { color: #E31B23; }
+      .ColorScheme-Accent { color: #E31B23; }
+    </style>
+  </defs>
+  <path d="M 16 10 L 38 10 L 48 20 L 48 54 C 48 56 46 58 44 58 L 20 58 C 18 58 16 56 16 54 Z" 
+        fill="none" stroke="#E31B23" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 38 10 L 38 20 L 48 20" fill="none" stroke="#E31B23" stroke-width="2" stroke-linejoin="round"/>
+  
+  <path d="M 27 32 L 22 37 L 27 42 M 37 32 L 42 37 L 37 42 M 34 30 L 30 44" fill="none" stroke="#E31B23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+</svg>
