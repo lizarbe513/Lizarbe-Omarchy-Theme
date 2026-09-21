@@ -8,4 +8,4 @@ source "$SCRIPT_DIR/common.sh"
 info "=== Instalando Suite Multimedia & Audio/Video ==="
 install_pkg_file "$REPO_DIR/packages/pkgs-multimedia.txt" "Suite Multimedia"
 
-success "Herramientas multimedia listas: DaVinci Resolve, Kdenlive, Shotcut, OBS Studio y Audacity."
+success "Herramientas multimedia listas: Kdenlive, Shotcut, OBS Studio y Audacity."

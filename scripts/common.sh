@@ -9,6 +9,22 @@ YELLOW='\033[1;33m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
+# Privilegios para operaciones en la raíz del sistema
+SUDO=""
+if [[ $EUID -ne 0 ]]; then
+    SUDO="sudo"
+fi
+
+ensure_sudo() {
+    if [[ $EUID -ne 0 ]]; then
+        info "Se requieren privilegios de superusuario para operaciones en la raíz del sistema (/usr/share y /etc)..."
+        sudo -v || {
+            error "No se pudieron obtener privilegios de superusuario con sudo."
+            exit 1
+        }
+    fi
+}
+
 info() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }

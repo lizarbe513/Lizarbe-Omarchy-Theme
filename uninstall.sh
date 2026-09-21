@@ -62,7 +62,8 @@ remove_pkg_file() {
 }
 
 uninstall_theme() {
-    info "=== Revertiendo Tema y Personalizaciones Visuales ==="
+    info "=== Revertiendo Tema y Personalizaciones Visuales en la Raíz y Usuario ==="
+    ensure_sudo
 
     # 1. Cambiar tema activo de Omarchy si está en lizarbe
     if command -v omarchy &>/dev/null; then
@@ -74,38 +75,49 @@ uninstall_theme() {
         fi
     fi
 
-    # 2. Eliminar tema lizarbe de omarchy
+    # 2. Eliminar tema lizarbe de omarchy (raíz y usuario)
+    if [[ -d "/usr/share/omarchy/themes/lizarbe" ]]; then
+        info "Eliminando tema Lizarbe de /usr/share/omarchy/themes/..."
+        $SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
+    fi
     if [[ -d "$HOME/.config/omarchy/themes/lizarbe" ]]; then
-        info "Eliminando carpeta del tema Lizarbe..."
         rm -rf "$HOME/.config/omarchy/themes/lizarbe"
     fi
 
-    # 3. Eliminar branding propio
+    # 3. Eliminar branding propio (raíz y usuario)
     info "Limpiando branding personalizado..."
-    rm -f "$HOME/.config/omarchy/branding/about.txt"
-    rm -f "$HOME/.config/omarchy/branding/logo.png"
-    rm -f "$HOME/.config/omarchy/branding/screensaver.txt"
+    $SUDO rm -f "/usr/share/omarchy/branding/about.txt" "/usr/share/omarchy/branding/logo.png" "/usr/share/omarchy/branding/screensaver.txt" 2>/dev/null || true
+    $SUDO rm -f "/etc/omarchy/branding/about.txt" "/etc/omarchy/branding/logo.png" "/etc/omarchy/branding/screensaver.txt" 2>/dev/null || true
+    rm -f "$HOME/.config/omarchy/branding/about.txt" "$HOME/.config/omarchy/branding/logo.png" "$HOME/.config/omarchy/branding/screensaver.txt"
 
-    # 4. Limpiar Fastfetch personalizado
+    # 4. Limpiar Fastfetch y Starship (raíz y usuario)
+    info "Limpiando configuración de Fastfetch y Starship..."
+    $SUDO rm -rf "/etc/xdg/fastfetch" 2>/dev/null || true
+    $SUDO rm -f "/etc/starship.toml" 2>/dev/null || true
     if [[ -d "$HOME/.config/fastfetch" ]]; then
-        info "Limpiando configuración de Fastfetch..."
         rm -f "$HOME/.config/fastfetch/logo.txt"
     fi
 
-    # 5. Eliminar tema de iconos Lizarbe-Red
+    # 5. Eliminar tema de iconos Lizarbe-Red (raíz y usuario)
+    if [[ -d "/usr/share/icons/Lizarbe-Red" ]]; then
+        info "Eliminando pack de iconos Lizarbe-Red de /usr/share/icons/..."
+        $SUDO rm -rf "/usr/share/icons/Lizarbe-Red"
+    fi
     if [[ -d "$HOME/.local/share/icons/Lizarbe-Red" ]]; then
-        info "Eliminando pack de iconos Lizarbe-Red..."
         rm -rf "$HOME/.local/share/icons/Lizarbe-Red"
         rm -f "$HOME/.icons/Lizarbe-Red"
     fi
 
-    # 6. Eliminar tema GTK Darky
+    # 6. Eliminar tema GTK Darky (raíz y usuario)
+    if [[ -d "/usr/share/themes/Darky" ]]; then
+        info "Eliminando tema GTK Darky de /usr/share/themes/..."
+        $SUDO rm -rf "/usr/share/themes/Darky"
+    fi
     if [[ -d "$HOME/.local/share/themes/Darky" ]]; then
-        info "Eliminando tema GTK Darky..."
         rm -rf "$HOME/.local/share/themes/Darky"
     fi
 
-    success "Tema Lizarbe revertido y desinstalado exitosamente."
+    success "Tema Lizarbe revertido y desinstalado exitosamente de la raíz y usuario."
 }
 
 uninstall_webapps() {

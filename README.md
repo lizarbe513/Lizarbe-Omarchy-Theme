@@ -58,10 +58,10 @@ bash scripts/install-core.sh
 ## 📦 Suites y Aplicaciones Incluidas
 
 ### 1. Base del Sistema & Tema Lizarbe (`scripts/install-core.sh`)
-* Tema Omarchy `Lizarbe` con wallpapers pixel art e iconos de barra en rojo
-* Pack de iconos propio `Lizarbe-Red`
+* **Tema Omarchy `Lizarbe`**: Instalado en la raíz del sistema en `/usr/share/omarchy/themes/` con wallpapers pixel art e iconos de barra en rojo
+* **Pack de iconos `Lizarbe-Red`**: Instalado globalmente en `/usr/share/icons/`
 * **Zen Browser**: Navegador web predeterminado configurado nativamente con Omarchy
-* Tema GTK `Darky` copiado a `~/.local/share/themes/` (opcional: actívalo abriendo `nwg-look` > Widget > `Darky`)
+* **Tema GTK `Darky`**: Instalado a nivel de sistema en `/usr/share/themes/` (opcional: actívalo abriendo `nwg-look` > Widget > `Darky`)
 * `fastfetch` con logo personalizado, `starship` (estilo limpio Omarchy), `nwg-look`, `htop`, `kdeconnect`
 
 ### 2. Creatividad 2D (`scripts/install-2d.sh`)
@@ -90,7 +90,6 @@ bash scripts/install-core.sh
 * **Xournal++**: Notas manuscritas y bocetos con tableta
 
 ### 6. Multimedia & Audio/Video (`scripts/install-multimedia.sh`)
-* **DaVinci Resolve**: Edición, corrección de color y postproducción profesional
 * **Kdenlive**: Edición de video multipista
 * **Shotcut**: Editor de video rápido, ligero y simple
 * **OBS Studio**: Grabación y streaming

@@ -5,48 +5,75 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
-info "=== Instalando Configuración Base y Tema Lizarbe ==="
+info "=== Instalando Configuración Base y Tema Lizarbe en la Raíz del Sistema ==="
+ensure_sudo
 
 # 1. Instalar paquetes base
 install_pkg_file "$REPO_DIR/packages/pkgs-core.txt" "Paquetes Base del Sistema"
 
-# 2. Copiar tema Lizarbe a la carpeta de temas de Omarchy
-info "Instalando tema nativo Lizarbe en ~/.config/omarchy/themes/..."
-mkdir -p "$HOME/.config/omarchy/themes"
-cp -r "$REPO_DIR/config/omarchy/themes/lizarbe" "$HOME/.config/omarchy/themes/"
+# 2. Copiar tema Lizarbe a la carpeta global de temas de Omarchy en la raíz del sistema
+info "Instalando tema nativo Lizarbe en /usr/share/omarchy/themes/..."
+$SUDO mkdir -p "/usr/share/omarchy/themes"
+$SUDO cp -r "$REPO_DIR/config/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/"
+$SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe"
+# Limpiar copia local antigua en caso de existir para evitar colisiones
+rm -rf "$HOME/.config/omarchy/themes/lizarbe"
 
-# 3. Copiar branding (logo y acerca de)
+# 3. Copiar branding a nivel global en /usr/share/omarchy/branding y /etc/omarchy/branding
 if [[ -d "$REPO_DIR/config/omarchy/branding" ]]; then
-    info "Copiando branding personalizado..."
+    info "Copiando branding personalizado en la raíz del sistema..."
+    $SUDO mkdir -p "/usr/share/omarchy/branding" "/etc/omarchy/branding"
+    $SUDO cp -r "$REPO_DIR/config/omarchy/branding/"* "/usr/share/omarchy/branding/" 2>/dev/null || true
+    $SUDO cp -r "$REPO_DIR/config/omarchy/branding/"* "/etc/omarchy/branding/" 2>/dev/null || true
+    $SUDO chmod -R a+rX "/usr/share/omarchy/branding" "/etc/omarchy/branding" 2>/dev/null || true
     mkdir -p "$HOME/.config/omarchy/branding"
     cp -r "$REPO_DIR/config/omarchy/branding/"* "$HOME/.config/omarchy/branding/"
 fi
 
-# 4. Copiar configuración de Fastfetch y Starship
-info "Configurando Fastfetch y terminal..."
-mkdir -p "$HOME/.config/fastfetch"
-cp -r "$REPO_DIR/config/fastfetch/"* "$HOME/.config/fastfetch/"
+# 4. Copiar configuración de Fastfetch y Starship a nivel global (/etc) y de usuario
+info "Configurando Fastfetch y terminal en la raíz del sistema (/etc)..."
+$SUDO mkdir -p "/etc/xdg/fastfetch"
+$SUDO cp -r "$REPO_DIR/config/fastfetch/"* "/etc/xdg/fastfetch/"
+$SUDO chmod -R a+rX "/etc/xdg/fastfetch"
 
 if [[ -f "$REPO_DIR/config/starship.toml" ]]; then
-    cp "$REPO_DIR/config/starship.toml" "$HOME/.config/"
+    $SUDO cp "$REPO_DIR/config/starship.toml" "/etc/starship.toml"
+    $SUDO chmod a+r "/etc/starship.toml"
 fi
 
-# 5. Instalar tema de iconos Lizarbe-Red
+if [[ -d "/etc/skel" ]]; then
+    $SUDO mkdir -p "/etc/skel/.config/fastfetch"
+    $SUDO cp -r "$REPO_DIR/config/fastfetch/"* "/etc/skel/.config/fastfetch/" 2>/dev/null || true
+    [[ -f "$REPO_DIR/config/starship.toml" ]] && $SUDO cp "$REPO_DIR/config/starship.toml" "/etc/skel/.config/" 2>/dev/null || true
+fi
+
+mkdir -p "$HOME/.config/fastfetch"
+cp -r "$REPO_DIR/config/fastfetch/"* "$HOME/.config/fastfetch/"
+[[ -f "$REPO_DIR/config/starship.toml" ]] && cp "$REPO_DIR/config/starship.toml" "$HOME/.config/"
+
+# 5. Instalar tema de iconos Lizarbe-Red a nivel global en /usr/share/icons/
 if [[ -d "$REPO_DIR/icons/Lizarbe-Red" ]]; then
-    info "Instalando tema de iconos Lizarbe-Red en ~/.local/share/icons/..."
-    mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
-    cp -r "$REPO_DIR/icons/Lizarbe-Red" "$HOME/.local/share/icons/"
-    ln -sf "$HOME/.local/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red"
+    info "Instalando tema de iconos Lizarbe-Red en /usr/share/icons/..."
+    $SUDO mkdir -p "/usr/share/icons"
+    $SUDO cp -r "$REPO_DIR/icons/Lizarbe-Red" "/usr/share/icons/"
+    $SUDO chmod -R a+rX "/usr/share/icons/Lizarbe-Red"
     if command -v gtk-update-icon-cache &>/dev/null; then
-        gtk-update-icon-cache -f "$HOME/.local/share/icons/Lizarbe-Red" >/dev/null 2>&1 || true
+        $SUDO gtk-update-icon-cache -f "/usr/share/icons/Lizarbe-Red" >/dev/null 2>&1 || true
     fi
+    # Enlace de compatibilidad
+    mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
+    ln -sf "/usr/share/icons/Lizarbe-Red" "$HOME/.local/share/icons/Lizarbe-Red" 2>/dev/null || true
+    ln -sf "/usr/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red" 2>/dev/null || true
 fi
 
-# 6. Instalar tema GTK Darky (disponible en el sistema para cuando el usuario desee activarlo)
+# 6. Instalar tema GTK Darky a nivel global en /usr/share/themes/
 if [[ -d "$REPO_DIR/themes/Darky" ]]; then
-    info "Instalando tema GTK Darky en ~/.local/share/themes/ (sin aplicar)..."
+    info "Instalando tema GTK Darky en /usr/share/themes/ (sin aplicar)..."
+    $SUDO mkdir -p "/usr/share/themes"
+    $SUDO cp -r "$REPO_DIR/themes/Darky" "/usr/share/themes/"
+    $SUDO chmod -R a+rX "/usr/share/themes/Darky"
     mkdir -p "$HOME/.local/share/themes"
-    cp -r "$REPO_DIR/themes/Darky" "$HOME/.local/share/themes/"
+    ln -sf "/usr/share/themes/Darky" "$HOME/.local/share/themes/Darky" 2>/dev/null || true
 fi
 
 # 7. Configurar Zen Browser como predeterminado
@@ -61,7 +88,7 @@ if command -v omarchy &>/dev/null; then
     omarchy theme set lizarbe || true
 fi
 
-success "Tema Lizarbe instalado y aplicado de forma 100% nativa y fluida."
+success "Tema Lizarbe instalado en la raíz del sistema (/usr/share/omarchy/themes/) y aplicado con éxito."
 echo ""
 echo -e "${YELLOW}💡 Recomendación (Tema GTK Darky):${NC}"
 echo -e "   El tema GTK Darky ha quedado preinstalado en el sistema."
