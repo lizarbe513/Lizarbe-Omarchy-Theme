@@ -21,6 +21,7 @@ fi
 # 2. Actualizar tema nativo Lizarbe en /usr/share/omarchy/themes/
 info "Actualizando tema Lizarbe en /usr/share/omarchy/themes/lizarbe..."
 $SUDO mkdir -p "/usr/share/omarchy/themes"
+$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
 $SUDO cp -r "$SCRIPT_DIR/config/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/"
 $SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe"
 rm -rf "$HOME/.config/omarchy/themes/lizarbe"

@@ -14,6 +14,7 @@ install_pkg_file "$REPO_DIR/packages/pkgs-core.txt" "Paquetes Base del Sistema"
 # 2. Copiar tema Lizarbe a la carpeta global de temas de Omarchy en la raíz del sistema
 info "Instalando tema nativo Lizarbe en /usr/share/omarchy/themes/..."
 $SUDO mkdir -p "/usr/share/omarchy/themes"
+$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
 $SUDO cp -r "$REPO_DIR/config/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/"
 $SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe"
 # Limpiar copia local antigua en caso de existir para evitar colisiones
