@@ -88,6 +88,54 @@ if command -v omarchy &>/dev/null; then
     omarchy theme set lizarbe || true
 fi
 
+# 9. Instalar la aplicación CLI 'lizarbe' y hooks del sistema
+info "Instalando aplicación de sistema 'lizarbe' en /usr/local/bin..."
+$SUDO mkdir -p "/usr/local/bin"
+if [[ -f "$REPO_DIR/lizarbe" ]]; then
+    $SUDO cp -p "$REPO_DIR/lizarbe" "/usr/local/bin/lizarbe"
+    $SUDO cp -p "$REPO_DIR/lizarbe-update" "/usr/local/bin/lizarbe-update" 2>/dev/null || true
+    [[ -f "$REPO_DIR/lizarbe-apply-user" ]] && $SUDO cp -p "$REPO_DIR/lizarbe-apply-user" "/usr/local/bin/lizarbe-apply-user"
+    $SUDO chmod 755 "/usr/local/bin/lizarbe"
+    [[ -f "/usr/local/bin/lizarbe-update" ]] && $SUDO chmod 755 "/usr/local/bin/lizarbe-update"
+    [[ -f "/usr/local/bin/lizarbe-apply-user" ]] && $SUDO chmod 755 "/usr/local/bin/lizarbe-apply-user"
+fi
+
+# Hook prioritario para Omarchy update
+mkdir -p "$HOME/.config/omarchy/hooks/post-update.d"
+cat << 'EOF' > "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook"
+#!/bin/bash
+# Hook prioritario post-update para actualizar tema Lizarbe
+if command -v lizarbe &>/dev/null; then
+    lizarbe update --non-interactive || true
+elif [[ -x /usr/local/bin/lizarbe ]]; then
+    /usr/local/bin/lizarbe update --non-interactive || true
+elif command -v lizarbe-update &>/dev/null; then
+    lizarbe-update --non-interactive || true
+fi
+EOF
+chmod 755 "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook"
+
+if [[ -d "/etc/skel" ]]; then
+    $SUDO mkdir -p "/etc/skel/.config/omarchy/hooks/post-update.d"
+    $SUDO cp -p "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" "/etc/skel/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" 2>/dev/null || true
+fi
+
+if [[ -d "/etc/pacman.d" ]]; then
+    $SUDO mkdir -p "/etc/pacman.d/hooks"
+    cat << 'EOF' | $SUDO tee "/etc/pacman.d/hooks/00-lizarbe-update.hook" >/dev/null
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = omarchy-*
+Target = hyprland
+
+[Action]
+Description = Sincronizando Tema Lizarbe tras actualización del sistema...
+When = PostTransaction
+Exec = /usr/bin/bash -c "if [[ -x /usr/local/bin/lizarbe ]] && [[ ! -f /tmp/omarchy-update.log ]]; then /usr/local/bin/lizarbe update --non-interactive || true; fi"
+EOF
+fi
+
 success "Tema Lizarbe instalado en la raíz del sistema (/usr/share/omarchy/themes/) y aplicado con éxito."
 echo ""
 echo -e "${YELLOW}💡 Recomendación (Tema GTK Darky):${NC}"

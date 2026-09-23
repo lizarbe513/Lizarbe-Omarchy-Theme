@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# lizarbe-apply-user: Aplica el tema Lizarbe, dotfiles y corrige Bloq Mayús
+# Puede ejecutarse directamente por el usuario o mediante sudo/root indicando el usuario.
+# ==============================================================================
+set -e
+
+# Detectar usuario objetivo
+TARGET_USER="${1:-$USER}"
+if [[ -z "$TARGET_USER" || "$TARGET_USER" == "root" ]]; then
+    if [[ -n "$SUDO_USER" && "$SUDO_USER" != "root" ]]; then
+        TARGET_USER="$SUDO_USER"
+    elif [[ -n "$OMARCHY_INSTALL_USER" && "$OMARCHY_INSTALL_USER" != "root" ]]; then
+        TARGET_USER="$OMARCHY_INSTALL_USER"
+    else
+        # Buscar el primer usuario con UID >= 1000 en /home
+        FIRST_USER=$(awk -F: '$3 >= 1000 && $3 < 65000 {print $1; exit}' /etc/passwd 2>/dev/null || true)
+        if [[ -n "$FIRST_USER" ]]; then
+            TARGET_USER="$FIRST_USER"
+        else
+            TARGET_USER="root"
+        fi
+    fi
+fi
+
+USER_HOME=$(getent passwd "$TARGET_USER" | cut -d: -f6 2>/dev/null || echo "/home/$TARGET_USER")
+if [[ ! -d "$USER_HOME" ]]; then
+    mkdir -p "$USER_HOME"
+fi
+
+THEME_SRC="/opt/Lizarbe-Omarchy-Theme"
+
+# 1. Enlaces de iconos Lizarbe-Red
+mkdir -p "$USER_HOME/.local/share/icons" "$USER_HOME/.icons"
+if [[ -d "/usr/share/icons/Lizarbe-Red" ]]; then
+    ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.local/share/icons/Lizarbe-Red"
+    ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.icons/Lizarbe-Red"
+fi
+
+# 2. Enlaces del tema GTK Darky
+mkdir -p "$USER_HOME/.local/share/themes"
+if [[ -d "/usr/share/themes/Darky" ]]; then
+    ln -sfn "/usr/share/themes/Darky" "$USER_HOME/.local/share/themes/Darky"
+fi
+
+# 3. Configuración de Fastfetch
+mkdir -p "$USER_HOME/.config/fastfetch"
+if [[ -d "$THEME_SRC/config/fastfetch" ]]; then
+    cp -r "$THEME_SRC/config/fastfetch/"* "$USER_HOME/.config/fastfetch/" 2>/dev/null || true
+elif [[ -d "/etc/xdg/fastfetch" ]]; then
+    cp -r /etc/xdg/fastfetch/* "$USER_HOME/.config/fastfetch/" 2>/dev/null || true
+fi
+
+# 4. Configuración de Starship
+mkdir -p "$USER_HOME/.config"
+if [[ -f "$THEME_SRC/config/starship.toml" ]]; then
+    cp -f "$THEME_SRC/config/starship.toml" "$USER_HOME/.config/starship.toml"
+elif [[ -f "/etc/starship.toml" ]]; then
+    cp -f "/etc/starship.toml" "$USER_HOME/.config/starship.toml"
+fi
+
+# 5. Branding de Omarchy
+if [[ -d "$THEME_SRC/config/omarchy/branding" ]]; then
+    mkdir -p "$USER_HOME/.config/omarchy/branding"
+    cp -r "$THEME_SRC/config/omarchy/branding/"* "$USER_HOME/.config/omarchy/branding/" 2>/dev/null || true
+elif [[ -d "/usr/share/omarchy/branding" ]]; then
+    mkdir -p "$USER_HOME/.config/omarchy/branding"
+    cp -r /usr/share/omarchy/branding/* "$USER_HOME/.config/omarchy/branding/" 2>/dev/null || true
+fi
+
+# 6. Corrección de la tecla Bloq Mayús (Caps Lock) en Hyprland
+# En Omarchy, kb_options viene por defecto como "compose:caps", lo cual
+# inhabilita Bloq Mayús y lo convierte en tecla Compose.
+HYPR_DIR="$USER_HOME/.config/hypr"
+mkdir -p "$HYPR_DIR"
+if [[ -f "$HYPR_DIR/input.lua" ]]; then
+    sed -i 's/kb_options = "compose:caps"/kb_options = ""/g' "$HYPR_DIR/input.lua"
+    sed -i 's/compose:caps//g' "$HYPR_DIR/input.lua"
+fi
+
+# 7. Activar el tema Lizarbe a través de Omarchy
+export OMARCHY_THEME_HEADLESS=1
+if command -v omarchy-theme-set &>/dev/null; then
+    if [[ "$(id -u)" -eq 0 && "$TARGET_USER" != "root" ]]; then
+        su - "$TARGET_USER" -c "OMARCHY_THEME_HEADLESS=1 omarchy-theme-set lizarbe || true" 2>/dev/null || true
+    else
+        omarchy-theme-set lizarbe 2>/dev/null || true
+    fi
+elif command -v omarchy &>/dev/null; then
+    if [[ "$(id -u)" -eq 0 && "$TARGET_USER" != "root" ]]; then
+        su - "$TARGET_USER" -c "omarchy theme set lizarbe || true" 2>/dev/null || true
+    else
+        omarchy theme set lizarbe 2>/dev/null || true
+    fi
+fi
+
+# Asegurar propiedad de los archivos si se ejecutó como root
+if [[ "$(id -u)" -eq 0 && "$TARGET_USER" != "root" ]]; then
+    chown -R "$TARGET_USER:$TARGET_USER" "$USER_HOME/.config" "$USER_HOME/.local" "$USER_HOME/.icons" 2>/dev/null || true
+fi
+
+exit 0

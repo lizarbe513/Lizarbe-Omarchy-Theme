@@ -92,6 +92,54 @@ if command -v omarchy &>/dev/null; then
     omarchy theme set lizarbe || true
 fi
 
+# 9. Actualizar la aplicación CLI 'lizarbe' y hooks en el sistema
+if [[ -f "$SCRIPT_DIR/lizarbe" ]]; then
+    info "Actualizando binarios de la aplicación 'lizarbe' en /usr/local/bin..."
+    $SUDO mkdir -p "/usr/local/bin"
+    $SUDO cp -p "$SCRIPT_DIR/lizarbe" "/usr/local/bin/lizarbe"
+    [[ -f "$SCRIPT_DIR/lizarbe-update" ]] && $SUDO cp -p "$SCRIPT_DIR/lizarbe-update" "/usr/local/bin/lizarbe-update"
+    [[ -f "$SCRIPT_DIR/lizarbe-apply-user" ]] && $SUDO cp -p "$SCRIPT_DIR/lizarbe-apply-user" "/usr/local/bin/lizarbe-apply-user"
+    $SUDO chmod 755 "/usr/local/bin/lizarbe"
+    [[ -f "/usr/local/bin/lizarbe-update" ]] && $SUDO chmod 755 "/usr/local/bin/lizarbe-update"
+    [[ -f "/usr/local/bin/lizarbe-apply-user" ]] && $SUDO chmod 755 "/usr/local/bin/lizarbe-apply-user"
+
+    # Actualizar hook post-update
+    mkdir -p "$HOME/.config/omarchy/hooks/post-update.d"
+    cat << 'EOF' > "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook"
+#!/bin/bash
+# Hook prioritario post-update para actualizar tema Lizarbe
+if command -v lizarbe &>/dev/null; then
+    lizarbe update --non-interactive || true
+elif [[ -x /usr/local/bin/lizarbe ]]; then
+    /usr/local/bin/lizarbe update --non-interactive || true
+elif command -v lizarbe-update &>/dev/null; then
+    lizarbe-update --non-interactive || true
+fi
+EOF
+    chmod 755 "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook"
+
+    if [[ -d "/etc/skel" ]]; then
+        $SUDO mkdir -p "/etc/skel/.config/omarchy/hooks/post-update.d"
+        $SUDO cp -p "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" "/etc/skel/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" 2>/dev/null || true
+    fi
+
+    if [[ -d "/etc/pacman.d" ]]; then
+        $SUDO mkdir -p "/etc/pacman.d/hooks"
+        cat << 'EOF' | $SUDO tee "/etc/pacman.d/hooks/00-lizarbe-update.hook" >/dev/null
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = omarchy-*
+Target = hyprland
+
+[Action]
+Description = Sincronizando Tema Lizarbe tras actualización del sistema...
+When = PostTransaction
+Exec = /usr/bin/bash -c "if [[ -x /usr/local/bin/lizarbe ]] && [[ ! -f /tmp/omarchy-update.log ]]; then /usr/local/bin/lizarbe update --non-interactive || true; fi"
+EOF
+    fi
+fi
+
 echo ""
 success "=============================================================="
 success " ¡Tema Lizarbe y dotfiles actualizados en la raíz con éxito!"

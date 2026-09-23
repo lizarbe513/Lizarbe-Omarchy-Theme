@@ -117,6 +117,14 @@ uninstall_theme() {
         rm -rf "$HOME/.local/share/themes/Darky"
     fi
 
+    # 7. Eliminar binarios de la aplicación Lizarbe y hooks
+    info "Eliminando binarios y hooks de la aplicación Lizarbe..."
+    $SUDO rm -f "/usr/local/bin/lizarbe" "/usr/local/bin/lizarbe-update" "/usr/local/bin/lizarbe-apply-user" 2>/dev/null || true
+    $SUDO rm -f "/etc/pacman.d/hooks/00-lizarbe-update.hook" 2>/dev/null || true
+    $SUDO rm -f "/etc/skel/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" 2>/dev/null || true
+    rm -f "$HOME/.config/omarchy/hooks/post-update.d/00-lizarbe-update.hook" 2>/dev/null || true
+    rm -f "$HOME/.local/bin/lizarbe" "$HOME/.local/bin/lizarbe-update" "$HOME/.local/bin/lizarbe-apply-user" 2>/dev/null || true
+
     success "Tema Lizarbe revertido y desinstalado exitosamente de la raíz y usuario."
 }
 

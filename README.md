@@ -97,29 +97,45 @@ bash scripts/install-core.sh
 
 ---
 
-## ⚡ Actualizaciones Rápidas (`./update.sh`)
+## ⚡ CLI del Sistema `lizarbe` & Actualizaciones
 
-Para actualizar el tema, iconos, configs y dotfiles sin tener que reinstalar todo ni pasar por los instaladores de paquetes:
+Lizarbe es una aplicación del sistema con su propio comando global `lizarbe`:
 
 ```bash
-./update.sh
+# Ver estado del tema, versión local y remota en GitHub
+lizarbe status
+
+# Actualizar el tema a la última versión oficial de GitHub
+lizarbe update
+
+# Desinstalar componentes o el tema
+lizarbe uninstall --theme-only
+lizarbe uninstall --all
+
+# Re-aplicar dotfiles, iconos, configuración y corrección de Bloq Mayús
+lizarbe apply
+
+# Ver ayuda y opciones disponibles
+lizarbe help
 ```
 
-Este comando descarga los últimos cambios con `git pull`, actualiza los archivos del tema, iconos y recarga el shell en vivo al instante.
+### Actualización Automática con el Sistema
+Lizarbe incluye hooks prioritarios (`00-lizarbe-update.hook`) tanto para el comando `omarchy update` como para Pacman. Cada vez que el sistema se actualiza, la aplicación `lizarbe` consulta el repositorio oficial y se mantiene sincronizada con máxima prioridad sin requerir pasos manuales.
 
 ---
 
 ## 🔄 Desinstalación y Reversión Limpia
 
-Si deseas remover paquetes o volver al tema oficial de Omarchy, cuentas con el script `./uninstall.sh`:
+Si deseas remover paquetes o volver al tema oficial de Omarchy, cuentas con el comando `lizarbe uninstall` o el script `./uninstall.sh`:
 
 ```bash
 # Asistente interactivo guiado:
-./uninstall.sh
+lizarbe uninstall
+# o: ./uninstall.sh
 
 # O mediante opciones directas:
-./uninstall.sh --theme-only    # Elimina el tema Lizarbe, Darky GTK, iconos y restaura el tema oficial
-./uninstall.sh --apps-only     # Desinstala las suites de aplicaciones (conservando el tema)
-./uninstall.sh --all           # Remueve absolutamente todo y deja Omarchy en su estado base
+lizarbe uninstall --theme-only    # Elimina el tema Lizarbe, Darky GTK, iconos y restaura el tema oficial
+lizarbe uninstall --apps-only     # Desinstala las suites de aplicaciones (conservando el tema)
+lizarbe uninstall --all           # Remueve absolutamente todo y deja Omarchy en su estado base
 ```
 
