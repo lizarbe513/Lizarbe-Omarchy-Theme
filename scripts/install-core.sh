@@ -66,6 +66,9 @@ if [[ -d "$REPO_DIR/icons/Lizarbe-Red" ]]; then
     mkdir -p "$HOME/.local/share/icons" "$HOME/.icons"
     ln -sf "/usr/share/icons/Lizarbe-Red" "$HOME/.local/share/icons/Lizarbe-Red" 2>/dev/null || true
     ln -sf "/usr/share/icons/Lizarbe-Red" "$HOME/.icons/Lizarbe-Red" 2>/dev/null || true
+    if [[ -d "$HOME/Projects" ]] && command -v gio &>/dev/null; then
+        gio set -t string "$HOME/Projects" metadata::custom-icon-name folder-projects 2>/dev/null || true
+    fi
 fi
 
 # 6. Instalar tema GTK Darky a nivel global en /usr/share/themes/

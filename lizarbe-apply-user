@@ -36,6 +36,9 @@ if [[ -d "/usr/share/icons/Lizarbe-Red" ]]; then
     ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.local/share/icons/Lizarbe-Red"
     ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.icons/Lizarbe-Red"
 fi
+if [[ -d "$USER_HOME/Projects" ]] && command -v gio &>/dev/null; then
+    gio set -t string "$USER_HOME/Projects" metadata::custom-icon-name folder-projects 2>/dev/null || true
+fi
 
 # 2. Enlaces del tema GTK Darky
 mkdir -p "$USER_HOME/.local/share/themes"
