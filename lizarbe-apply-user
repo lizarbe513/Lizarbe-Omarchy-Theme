@@ -28,11 +28,19 @@ if [[ ! -d "$USER_HOME" ]]; then
     mkdir -p "$USER_HOME"
 fi
 
-THEME_SRC="/opt/Lizarbe-Omarchy-Theme"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -d "$SCRIPT_DIR/icons/Lizarbe-Red" ]]; then
+    THEME_SRC="$SCRIPT_DIR"
+else
+    THEME_SRC="/opt/Lizarbe-Omarchy-Theme"
+fi
 
 # 1. Enlaces de iconos Lizarbe-Red
 mkdir -p "$USER_HOME/.local/share/icons" "$USER_HOME/.icons"
-if [[ -d "/usr/share/icons/Lizarbe-Red" ]]; then
+if [[ -d "$THEME_SRC/icons/Lizarbe-Red" ]]; then
+    ln -sfn "$THEME_SRC/icons/Lizarbe-Red" "$USER_HOME/.local/share/icons/Lizarbe-Red"
+    ln -sfn "$THEME_SRC/icons/Lizarbe-Red" "$USER_HOME/.icons/Lizarbe-Red"
+elif [[ -d "/usr/share/icons/Lizarbe-Red" ]]; then
     ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.local/share/icons/Lizarbe-Red"
     ln -sfn "/usr/share/icons/Lizarbe-Red" "$USER_HOME/.icons/Lizarbe-Red"
 fi

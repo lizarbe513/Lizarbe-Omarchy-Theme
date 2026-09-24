@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><g color="#bebebe" fill="#474747"><path d="M2.2 0C.993 0 0 1.007 0 2.209v10.582C0 13.993.994 15 2.2 15h11.6c1.206 0 2.2-1.007 2.2-2.209V2.209C16 1.007 15.006 0 13.8 0zm0 2h11.6c.124 0 .2.071.2.209v10.582c0 .138-.076.209-.2.209H2.2c-.124 0-.2-.071-.2-.209V2.209C2 2.071 2.076 2 2.2 2z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none" font-weight="400" font-family="sans-serif" overflow="visible"/><path d="M4.494 5.895a.6.6 0 00-.418 1.029L5.652 8.5l-1.576 1.576a.6.6 0 10.848.848l2-2a.6.6 0 000-.848l-2-2a.6.6 0 00-.43-.181z" style="line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;marker:none" font-weight="400" font-family="sans-serif" overflow="visible"/><path d="M8 10h3v1H8z" style="marker:none" overflow="visible"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style type="text/css">
+      .ColorScheme-Text { color: #E31B23; }
+      .ColorScheme-Accent { color: #E31B23; }
+    </style>
+  </defs>
+  <g class="ColorScheme-Text" fill="#E31B23">
+    <path class="ColorScheme-Text" d="M 2.96875 1.003906 C 1.324219 1.003906 0 2.359375 0 4.003906 L 0 12.003906 C 0 13.648438 1.324219 15.003906 2.96875 15.003906 L 13.03125 15.003906 C 14.675781 15.003906 16 13.648438 16 12.003906 L 16 6.003906 C 16 4.359375 14.675781 3.003906 13.03125 3.003906 L 9.445312 3.003906 L 7.738281 1.296875 C 7.550781 1.109375 7.296875 1.003906 7.03125 1.003906 Z M 2.96875 3.003906 L 6.554688 3.003906 L 7.554688 4.003906 L 1.96875 4.003906 C 1.96875 3.441406 2.40625 3.003906 2.96875 3.003906 Z M 1.96875 5.003906 L 13.03125 5.003906 C 13.59375 5.003906 14.03125 5.441406 14.03125 6.003906 L 14.03125 12.003906 C 14.03125 12.566406 13.59375 13.003906 13.03125 13.003906 L 2.96875 13.003906 C 2.40625 13.003906 1.96875 12.566406 1.96875 12.003906 Z" fill="#E31B23"/>
+    <path class="ColorScheme-Text" d="M 6.2 7.2 L 4.6 8.5 L 6.2 9.8 L 6.8 9.3 L 5.8 8.5 L 6.8 7.7 Z" fill="#E31B23"/>
+    <path class="ColorScheme-Text" d="M 9.8 7.2 L 9.2 7.7 L 10.2 8.5 L 9.2 9.3 L 9.8 9.8 L 11.4 8.5 Z" fill="#E31B23"/>
+    <line x1="8.6" y1="6.8" x2="7.4" y2="10.2" stroke="#E31B23" stroke-width="1.0" stroke-linecap="round"/>
+  </g>
+</svg>
