@@ -15,10 +15,7 @@ hl.config({
   decoration = {
     rounding = 0,
     shadow = {
-      enabled = true,
-      range = 24,
-      render_power = 3,
-      color = "rgba(00000022)",
+      enabled = false,
     },
   },
 

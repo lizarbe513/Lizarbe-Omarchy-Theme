@@ -48,7 +48,14 @@ if [[ -d "$USER_HOME/Projects" ]] && command -v gio &>/dev/null; then
     gio set -t string "$USER_HOME/Projects" metadata::custom-icon-name folder-projects 2>/dev/null || true
 fi
 
-# 2. Enlaces del tema GTK Darky
+# 2. Enlaces de temas Omarchy (Dark y Light) para desarrollo y reactividad local
+mkdir -p "$USER_HOME/.config/omarchy/themes"
+if [[ -d "$THEME_SRC/config/omarchy/themes/lizarbe" ]]; then
+    ln -sfn "$THEME_SRC/config/omarchy/themes/lizarbe" "$USER_HOME/.config/omarchy/themes/lizarbe"
+    ln -sfn "$THEME_SRC/config/omarchy/themes/lizarbe-light" "$USER_HOME/.config/omarchy/themes/lizarbe-light"
+fi
+
+# 3. Enlaces del tema GTK Darky
 mkdir -p "$USER_HOME/.local/share/themes"
 if [[ -d "/usr/share/themes/Darky" ]]; then
     ln -sfn "/usr/share/themes/Darky" "$USER_HOME/.local/share/themes/Darky"
@@ -62,7 +69,7 @@ for f in "$GTK4_USER_DIR/gtk.css" "$GTK4_USER_DIR/gtk-dark.css" "$GTK4_USER_DIR/
     fi
 done
 
-# 3. Configuración de Fastfetch
+# 4. Configuración de Fastfetch
 mkdir -p "$USER_HOME/.config/fastfetch"
 if [[ -d "$THEME_SRC/config/fastfetch" ]]; then
     cp -r "$THEME_SRC/config/fastfetch/"* "$USER_HOME/.config/fastfetch/" 2>/dev/null || true
@@ -70,7 +77,7 @@ elif [[ -d "/etc/xdg/fastfetch" ]]; then
     cp -r /etc/xdg/fastfetch/* "$USER_HOME/.config/fastfetch/" 2>/dev/null || true
 fi
 
-# 4. Configuración de Starship
+# 5. Configuración de Starship
 mkdir -p "$USER_HOME/.config"
 if [[ -f "$THEME_SRC/config/starship.toml" ]]; then
     cp -f "$THEME_SRC/config/starship.toml" "$USER_HOME/.config/starship.toml"
@@ -78,7 +85,7 @@ elif [[ -f "/etc/starship.toml" ]]; then
     cp -f "/etc/starship.toml" "$USER_HOME/.config/starship.toml"
 fi
 
-# 5. Branding de Omarchy
+# 6. Branding de Omarchy
 if [[ -d "$THEME_SRC/config/omarchy/branding" ]]; then
     mkdir -p "$USER_HOME/.config/omarchy/branding"
     cp -r "$THEME_SRC/config/omarchy/branding/"* "$USER_HOME/.config/omarchy/branding/" 2>/dev/null || true
@@ -87,7 +94,7 @@ elif [[ -d "/usr/share/omarchy/branding" ]]; then
     cp -r /usr/share/omarchy/branding/* "$USER_HOME/.config/omarchy/branding/" 2>/dev/null || true
 fi
 
-# 6. Corrección de la tecla Bloq Mayús (Caps Lock) en Hyprland
+# 7. Corrección de la tecla Bloq Mayús (Caps Lock) en Hyprland
 # En Omarchy, kb_options viene por defecto como "compose:caps", lo cual
 # inhabilita Bloq Mayús y lo convierte en tecla Compose.
 HYPR_DIR="$USER_HOME/.config/hypr"
@@ -97,7 +104,7 @@ if [[ -f "$HYPR_DIR/input.lua" ]]; then
     sed -i 's/compose:caps//g' "$HYPR_DIR/input.lua"
 fi
 
-# 7. Activar el tema Lizarbe a través de Omarchy
+# 8. Activar el tema Lizarbe a través de Omarchy
 export OMARCHY_THEME_HEADLESS=1
 TARGET_THEME="${2:-}"
 if [[ -z "$TARGET_THEME" ]]; then
