@@ -1,0 +1,14 @@
+[menu]
+# Tarjeta del menú, filas y estados de selección para el tema Lizarbe
+background                = "#08080B"
+background-alpha          = 1.0
+text                      = "#d8d8d8"
+border                    = "#E31B23"
+border-alpha              = 1.0
+scrim                     = "#08080B"
+scrim-alpha               = 0.5
+selected-background       = "#E31B23"
+selected-background-alpha = 0.15
+selected-text             = "#FF333D"
+selected-border           = "#E31B23"
+selected-border-alpha     = 0.25

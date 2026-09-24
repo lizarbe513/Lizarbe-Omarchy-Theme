@@ -1,0 +1,13 @@
+[lock]
+# Pantalla de bloqueo para el tema Lizarbe
+background       = "#08080B"
+background-alpha = 0.85
+text             = "#ffffff"
+placeholder      = "#585858"
+text-error       = "#FF333D"
+border           = "#E31B23"
+border-active    = "#FF333D"
+border-error     = "#FF333D"
+border-alpha     = 1.0
+selection        = "#E31B23"
+selection-alpha  = 0.45

@@ -75,6 +75,12 @@ if [[ -d "$REPO_DIR/themes/Darky" ]]; then
     $SUDO chmod -R a+rX "/usr/share/themes/Darky"
     mkdir -p "$HOME/.local/share/themes"
     ln -sf "/usr/share/themes/Darky" "$HOME/.local/share/themes/Darky" 2>/dev/null || true
+    # Limpiar posibles enlaces en gtk-4.0 para que GTK4 responda dinámicamente a los temas de Omarchy
+    for f in "$HOME/.config/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/assets"; do
+        if [[ -L "$f" && "$(readlink -f "$f" 2>/dev/null)" == *Darky* ]]; then
+            rm -f "$f"
+        fi
+    done
 fi
 
 # 7. Configurar Zen Browser como predeterminado
@@ -91,6 +97,13 @@ fi
 
 # 9. Instalar la aplicación CLI 'lizarbe' y hooks del sistema
 info "Instalando aplicación de sistema 'lizarbe' en /usr/local/bin..."
+if [[ "$REPO_DIR" != "/opt/Lizarbe-Omarchy-Theme" ]]; then
+    $SUDO mkdir -p "/opt"
+    if [[ ! -d "/opt/Lizarbe-Omarchy-Theme" ]]; then
+        info "Configurando repositorio del sistema en /opt/Lizarbe-Omarchy-Theme..."
+        $SUDO cp -r "$REPO_DIR" "/opt/Lizarbe-Omarchy-Theme"
+    fi
+fi
 $SUDO mkdir -p "/usr/local/bin"
 if [[ -f "$REPO_DIR/lizarbe" ]]; then
     $SUDO cp -p "$REPO_DIR/lizarbe" "/usr/local/bin/lizarbe"

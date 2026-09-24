@@ -80,6 +80,12 @@ if [[ -d "$SCRIPT_DIR/themes/Darky" ]]; then
     $SUDO chmod -R a+rX "/usr/share/themes/Darky"
     mkdir -p "$HOME/.local/share/themes"
     ln -sf "/usr/share/themes/Darky" "$HOME/.local/share/themes/Darky" 2>/dev/null || true
+    # Limpiar posibles enlaces en gtk-4.0 para que GTK4 responda dinámicamente a los temas de Omarchy
+    for f in "$HOME/.config/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/assets"; do
+        if [[ -L "$f" && "$(readlink -f "$f" 2>/dev/null)" == *Darky* ]]; then
+            rm -f "$f"
+        fi
+    done
 fi
 
 # 7. Asegurar que Zen Browser siga como predeterminado si está instalado

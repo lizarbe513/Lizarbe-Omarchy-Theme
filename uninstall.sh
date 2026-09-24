@@ -116,6 +116,11 @@ uninstall_theme() {
     if [[ -d "$HOME/.local/share/themes/Darky" ]]; then
         rm -rf "$HOME/.local/share/themes/Darky"
     fi
+    for f in "$HOME/.config/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk-dark.css" "$HOME/.config/gtk-4.0/assets"; do
+        if [[ -L "$f" && "$(readlink -f "$f" 2>/dev/null)" == *Darky* ]]; then
+            rm -f "$f"
+        fi
+    done
 
     # 7. Eliminar binarios de la aplicación Lizarbe y hooks
     info "Eliminando binarios y hooks de la aplicación Lizarbe..."

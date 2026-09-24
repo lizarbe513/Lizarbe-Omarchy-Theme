@@ -43,6 +43,14 @@ if [[ -d "/usr/share/themes/Darky" ]]; then
     ln -sfn "/usr/share/themes/Darky" "$USER_HOME/.local/share/themes/Darky"
 fi
 
+# Limpiar enlaces estáticos en gtk-4.0 si apuntan a Darky para permitir la reactividad nativa de Omarchy
+GTK4_USER_DIR="$USER_HOME/.config/gtk-4.0"
+for f in "$GTK4_USER_DIR/gtk.css" "$GTK4_USER_DIR/gtk-dark.css" "$GTK4_USER_DIR/assets"; do
+    if [[ -L "$f" && "$(readlink -f "$f" 2>/dev/null)" == *Darky* ]]; then
+        rm -f "$f"
+    fi
+done
+
 # 3. Configuración de Fastfetch
 mkdir -p "$USER_HOME/.config/fastfetch"
 if [[ -d "$THEME_SRC/config/fastfetch" ]]; then
