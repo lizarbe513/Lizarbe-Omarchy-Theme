@@ -18,13 +18,14 @@ if [[ -d "$SCRIPT_DIR/.git" ]] && command -v git &>/dev/null; then
     }
 fi
 
-# 2. Actualizar tema nativo Lizarbe en /usr/share/omarchy/themes/
-info "Actualizando tema Lizarbe en /usr/share/omarchy/themes/lizarbe..."
+# 2. Actualizar temas nativos Lizarbe (Dark y Light) en /usr/share/omarchy/themes/
+info "Actualizando temas Lizarbe (Dark y Light) en /usr/share/omarchy/themes/..."
 $SUDO mkdir -p "/usr/share/omarchy/themes"
-$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
+$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/lizarbe-light"
 $SUDO cp -r "$SCRIPT_DIR/config/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/"
-$SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe"
-rm -rf "$HOME/.config/omarchy/themes/lizarbe"
+$SUDO cp -r "$SCRIPT_DIR/config/omarchy/themes/lizarbe-light" "/usr/share/omarchy/themes/"
+$SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/lizarbe-light"
+rm -rf "$HOME/.config/omarchy/themes/lizarbe" "$HOME/.config/omarchy/themes/lizarbe-light"
 
 # 3. Actualizar branding a nivel global y de usuario
 if [[ -d "$SCRIPT_DIR/config/omarchy/branding" ]]; then
@@ -95,8 +96,20 @@ fi
 
 # 8. Refrescar tema de forma nativa a través de Omarchy
 if command -v omarchy &>/dev/null; then
-    info "Recargando tema Lizarbe en vivo..."
-    omarchy theme set lizarbe || true
+    local_current=""
+    if command -v omarchy-theme-current &>/dev/null; then
+        local_current=$(omarchy-theme-current 2>/dev/null || echo "")
+    else
+        local_current=$(omarchy theme current 2>/dev/null || echo "")
+    fi
+
+    if [[ "$local_current" == "lizarbe-light" ]]; then
+        info "Recargando tema Lizarbe Light en vivo..."
+        omarchy theme set lizarbe-light || true
+    elif [[ "$local_current" =~ [Ll]izarbe ]]; then
+        info "Recargando tema Lizarbe en vivo..."
+        omarchy theme set lizarbe || true
+    fi
 fi
 
 # 9. Actualizar la aplicación CLI 'lizarbe' y hooks en el sistema

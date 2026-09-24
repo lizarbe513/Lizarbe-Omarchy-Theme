@@ -1,0 +1,14 @@
+[menu]
+# Tarjeta del menú, filas y estados de selección para el tema Lizarbe Claro
+background                = "#FFFFFF"
+background-alpha          = 0.98
+text                      = "#1A1A1E"
+border                    = "#E31B23"
+border-alpha              = 0.85
+scrim                     = "#000000"
+scrim-alpha               = 0.25
+selected-background       = "#E31B23"
+selected-background-alpha = 0.12
+selected-text             = "#D3151D"
+selected-border           = "#E31B23"
+selected-border-alpha     = 0.40

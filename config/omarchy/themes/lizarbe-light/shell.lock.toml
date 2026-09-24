@@ -1,0 +1,13 @@
+[lock]
+# Pantalla de bloqueo para el tema Lizarbe Claro
+background       = "#F4F6F8"
+background-alpha = 0.90
+text             = "#1A1A1E"
+placeholder      = "#7C828D"
+text-error       = "#D3151D"
+border           = "#E31B23"
+border-active    = "#D3151D"
+border-error     = "#D3151D"
+border-alpha     = 1.0
+selection        = "#E31B23"
+selection-alpha  = 0.25

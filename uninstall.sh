@@ -75,14 +75,12 @@ uninstall_theme() {
         fi
     fi
 
-    # 2. Eliminar tema lizarbe de omarchy (raíz y usuario)
-    if [[ -d "/usr/share/omarchy/themes/lizarbe" ]]; then
-        info "Eliminando tema Lizarbe de /usr/share/omarchy/themes/..."
-        $SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
+    # 2. Eliminar temas Lizarbe de omarchy (raíz y usuario)
+    if [[ -d "/usr/share/omarchy/themes/lizarbe" || -d "/usr/share/omarchy/themes/lizarbe-light" ]]; then
+        info "Eliminando temas Lizarbe de /usr/share/omarchy/themes/..."
+        $SUDO rm -rf "/usr/share/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/lizarbe-light"
     fi
-    if [[ -d "$HOME/.config/omarchy/themes/lizarbe" ]]; then
-        rm -rf "$HOME/.config/omarchy/themes/lizarbe"
-    fi
+    rm -rf "$HOME/.config/omarchy/themes/lizarbe" "$HOME/.config/omarchy/themes/lizarbe-light"
 
     # 3. Eliminar branding propio (raíz y usuario)
     info "Limpiando branding personalizado..."

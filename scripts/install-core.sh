@@ -11,14 +11,15 @@ ensure_sudo
 # 1. Instalar paquetes base
 install_pkg_file "$REPO_DIR/packages/pkgs-core.txt" "Paquetes Base del Sistema"
 
-# 2. Copiar tema Lizarbe a la carpeta global de temas de Omarchy en la raíz del sistema
-info "Instalando tema nativo Lizarbe en /usr/share/omarchy/themes/..."
+# 2. Copiar temas Lizarbe (oscuro y claro) a la carpeta global de temas de Omarchy en la raíz del sistema
+info "Instalando temas nativos Lizarbe (Dark y Light) en /usr/share/omarchy/themes/..."
 $SUDO mkdir -p "/usr/share/omarchy/themes"
-$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe"
+$SUDO rm -rf "/usr/share/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/lizarbe-light"
 $SUDO cp -r "$REPO_DIR/config/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/"
-$SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe"
-# Limpiar copia local antigua en caso de existir para evitar colisiones
-rm -rf "$HOME/.config/omarchy/themes/lizarbe"
+$SUDO cp -r "$REPO_DIR/config/omarchy/themes/lizarbe-light" "/usr/share/omarchy/themes/"
+$SUDO chmod -R a+rX "/usr/share/omarchy/themes/lizarbe" "/usr/share/omarchy/themes/lizarbe-light"
+# Limpiar copias locales antiguas en caso de existir para evitar colisiones
+rm -rf "$HOME/.config/omarchy/themes/lizarbe" "$HOME/.config/omarchy/themes/lizarbe-light"
 
 # 3. Copiar branding a nivel global en /usr/share/omarchy/branding y /etc/omarchy/branding
 if [[ -d "$REPO_DIR/config/omarchy/branding" ]]; then

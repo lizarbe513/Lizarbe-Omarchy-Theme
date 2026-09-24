@@ -3,7 +3,7 @@
 Configuración completa para un sistema **Omarchy** recién instalado, orientada a la **creatividad visual, modelado/construcción espacial, desarrollo de software y ofimática**.
 
 Incluye:
-- **Tema nativo Lizarbe**: Colores, fondos pixel art, bordes e iconos/texto de la barra en rojo de forma nativa.
+- **Temas nativos Lizarbe (Dark & Light)**: Variantes completas en modo oscuro (fondo OLED / charcoal) y modo claro (papel milimetrado y dibujo técnico CAD / Whiteprint), con wallpapers en pixel art, bordes geométricos e indicadores en rojo de forma nativa.
 - **Pack de Iconos Lizarbe-Red**: Iconos personalizados que alternan fluidamente con cualquier tema de Omarchy.
 - **Tema GTK Darky**: Preinstalado en el sistema como opción para activarlo libremente mediante `nwg-look`.
 - **Branding propio y Terminal**: Logo ASCII personalizado en Fastfetch, starship prompt y soporte dinámico de terminales.
@@ -57,8 +57,10 @@ bash scripts/install-core.sh
 
 ## 📦 Suites y Aplicaciones Incluidas
 
-### 1. Base del Sistema & Tema Lizarbe (`scripts/install-core.sh`)
-* **Tema Omarchy `Lizarbe`**: Instalado en la raíz del sistema en `/usr/share/omarchy/themes/` con wallpapers pixel art e iconos de barra en rojo
+### 1. Base del Sistema & Temas Lizarbe (`scripts/install-core.sh`)
+* **Temas Omarchy `Lizarbe` y `Lizarbe Light`**: Instalados en la raíz del sistema en `/usr/share/omarchy/themes/` con wallpapers de dibujo técnico/pixel art, configuración modular para Quickshell (`shell.bar`, `shell.menu`, `shell.launcher`, `shell.lock`) y colores de sintaxis con alto contraste.
+  * Cambiar a modo oscuro: `omarchy theme set lizarbe`
+  * Cambiar a modo claro: `omarchy theme set lizarbe-light`
 * **Pack de iconos `Lizarbe-Red`**: Instalado globalmente en `/usr/share/icons/`
 * **Zen Browser**: Navegador web predeterminado configurado nativamente con Omarchy
 * **Tema GTK `Darky`**: Instalado a nivel de sistema en `/usr/share/themes/` (opcional: actívalo abriendo `nwg-look` > Widget > `Darky`)

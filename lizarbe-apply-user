@@ -88,17 +88,27 @@ fi
 
 # 7. Activar el tema Lizarbe a través de Omarchy
 export OMARCHY_THEME_HEADLESS=1
+TARGET_THEME="${2:-}"
+if [[ -z "$TARGET_THEME" ]]; then
+    CURRENT_THEME=$(omarchy theme current 2>/dev/null || echo "")
+    if [[ "$CURRENT_THEME" == "lizarbe-light" ]]; then
+        TARGET_THEME="lizarbe-light"
+    else
+        TARGET_THEME="lizarbe"
+    fi
+fi
+
 if command -v omarchy-theme-set &>/dev/null; then
     if [[ "$(id -u)" -eq 0 && "$TARGET_USER" != "root" ]]; then
-        su - "$TARGET_USER" -c "OMARCHY_THEME_HEADLESS=1 omarchy-theme-set lizarbe || true" 2>/dev/null || true
+        su - "$TARGET_USER" -c "OMARCHY_THEME_HEADLESS=1 omarchy-theme-set '$TARGET_THEME' || true" 2>/dev/null || true
     else
-        omarchy-theme-set lizarbe 2>/dev/null || true
+        omarchy-theme-set "$TARGET_THEME" 2>/dev/null || true
     fi
 elif command -v omarchy &>/dev/null; then
     if [[ "$(id -u)" -eq 0 && "$TARGET_USER" != "root" ]]; then
-        su - "$TARGET_USER" -c "omarchy theme set lizarbe || true" 2>/dev/null || true
+        su - "$TARGET_USER" -c "omarchy theme set '$TARGET_THEME' || true" 2>/dev/null || true
     else
-        omarchy theme set lizarbe 2>/dev/null || true
+        omarchy theme set "$TARGET_THEME" 2>/dev/null || true
     fi
 fi
 
