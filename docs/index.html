@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lizarbe ALMA // Computadoras de Taller</title>
+  <meta name="description" content="Lizarbe ALMA. Estación de trabajo modular con Omarchy OS. Sin bloatware, con tornillos estándar y control total del usuario.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    .font-mono-tech { font-family: 'JetBrains Mono', monospace; }
+    .font-sans-tech { font-family: 'Space Grotesk', sans-serif; }
+    .font-serif-apple { font-family: 'Newsreader', serif; }
+
+    /* Fondo con textura sutil de estudio técnico */
+    .bg-studio {
+      background-color: #0B0C0E;
+      background-image: radial-gradient(circle at 50% 30%, #1A1C22 0%, #0B0C0E 70%);
+    }
+
+    .paper-grid {
+      background-color: #F7F5F0;
+      background-image: 
+        linear-gradient(to right, rgba(18, 20, 24, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(18, 20, 24, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .key-cap {
+      background: #FFFFFF;
+      border: 1px solid #121418;
+      box-shadow: 0 3px 0 #121418;
+    }
+
+    /* Animación de brillo de hardware */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .animate-glow {
+      animation: pulse-subtle 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0C0E] text-[#F0F3F8] font-sans-tech antialiased selection:bg-[#F62424] selection:text-white">
+
+  <!-- ========================================================= -->
+  <!-- BARRA DE NAVEGACIÓN ESTILO APPLE // MINIMALISTA Y PRECISA  -->
+  <!-- ========================================================= -->
+  <header class="sticky top-0 z-50 bg-[#0B0C0E]/85 backdrop-blur-xl border-b border-white/10 px-4 md:px-8 py-3.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Marca -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-7 h-7 bg-[#F62424] rounded flex items-center justify-center text-white font-bold text-xs font-mono-tech shadow-md shadow-[#F62424]/20 group-hover:scale-105 transition-transform">
+          ✦
+        </div>
+        <div>
+          <span class="font-extrabold tracking-widest text-sm uppercase text-white block leading-none">LIZARBE</span>
+          <span class="font-mono-tech text-[9.5px] text-[#AAB2BE] tracking-wider block mt-0.5">TALLER DE CÓMPUTO</span>
+        </div>
+      </a>
+
+      <!-- Menú de Navegación -->
+      <nav class="hidden md:flex items-center gap-8 font-mono-tech text-xs tracking-wider text-[#AAB2BE]">
+        <a href="#gabinete" class="hover:text-white transition-colors">01. EL HARDWARE</a>
+        <a href="#omarchy" class="hover:text-white transition-colors">02. OMARCHY OS</a>
+        <a href="#filosofia" class="hover:text-white transition-colors">03. MANIFIESTO</a>
+        <a href="#modelos" class="hover:text-white transition-colors">04. LÍNEAS</a>
+        <a href="#atajos" class="hover:text-white transition-colors">05. ATAJOS</a>
+        <a href="#soporte" class="hover:text-white transition-colors">06. TALLER</a>
+      </nav>
+
+      <!-- Botón de Contacto / Reserva -->
+      <a href="https://wa.me/51923488910?text=Hola%20Taller%20Lizarbe,%20tengo%20interés%20en%20adquirir%20o%20consultar%20sobre%20una%20computadora%20Lizarbe" 
+         target="_blank" 
+         class="font-mono-tech text-xs font-bold px-3.5 py-1.5 bg-white text-[#121418] hover:bg-[#F62424] hover:text-white transition-all rounded-full flex items-center gap-2 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-[#1AB054] animate-pulse"></span>
+        <span>CONTACTAR TALLER</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 1: HERO APPLE // EL HARDWARE MONOLÍTICO           -->
+  <!-- ========================================================= -->
+  <section id="inicio" class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 md:px-8 bg-studio overflow-hidden border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col items-center text-center space-y-6">
+      
+      <!-- Badge de Serie -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-white/5 border border-white/15 rounded-full text-xs font-mono-tech text-[#AAB2BE]">
+        <span class="w-2 h-2 rounded-full bg-[#F62424]"></span>
+        <span>ESTACIÓN DE TRABAJO MODULAR // SERIE 01</span>
+      </div>
+
+      <!-- Título de Alto Impacto Apple -->
+      <h1 class="text-4xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[1.04] max-w-4xl">
+        Lizarbe ALMA.<br>
+        <span class="font-serif-apple italic font-normal text-[#AAB2BE]">El hardware que te pertenece.</span>
+      </h1>
+
+      <p class="text-base md:text-xl text-[#AAB2BE] max-w-2xl font-normal leading-relaxed">
+        Chasis modular de acero perforado con asas de transporte, refrigeración abierta y tornillos estándar. Diseñada para trabajar, crear y durar.
+      </p>
+
+      <!-- Selector de Modo de Vista (Modelo 3D Interactivo vs Foto de Estudio) -->
+      <div class="pt-4 flex items-center gap-2 bg-white/5 p-1 rounded-lg border border-white/10 text-xs font-mono-tech">
+        <button id="btn-view-3d" onclick="switchChassisView('3d')" class="px-4 py-1.5 rounded-md bg-[#F62424] text-white font-bold transition-all">
+          🕹 MODELO 3D INTERACTIVO
+        </button>
+        <button id="btn-view-photo" onclick="switchChassisView('photo')" class="px-4 py-1.5 rounded-md text-[#AAB2BE] hover:text-white transition-all">
+          📷 FOTO DE ESTUDIO
+        </button>
+      </div>
+
+      <!-- VISOR DEL GABINETE (3D / FOTOGRAFÍA) -->
+      <div class="relative w-full max-w-4xl h-[420px] md:h-[520px] rounded-2xl border border-white/10 bg-[#121418]/60 backdrop-blur-md overflow-hidden flex items-center justify-center shadow-2xl mt-4">
+        
+        <!-- Canvas 3D de Three.js -->
+        <div id="canvas-3d-container" class="w-full h-full cursor-grab active:cursor-grabbing">
+          <!-- Three.js inyectará el canvas aquí -->
+        </div>
+
+        <!-- Vista Fotográfica de Estudio (Oculta por defecto) -->
+        <div id="photo-container" class="hidden w-full h-full flex items-center justify-center p-8">
+          <img src="assets/chassis_qube500.png" alt="Cooler Master Qube 500 Chasis Lizarbe" class="max-h-full max-w-full object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
+        </div>
+
+        <!-- Indicador de Control 3D -->
+        <div id="instruction-3d" class="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono-tech text-[11px] text-[#AAB2BE] pointer-events-none px-4">
+          <span class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-[#1AB054]"></span>
+            <span>Arrastra con el ratón o el dedo para rotar 360° en 3D</span>
+          </span>
+          <span class="hidden sm:inline">COOLER MASTER QUBE 500 FLATPACK</span>
+        </div>
+
+      </div>
+
+      <!-- Métricas Clave de Rendimiento -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl pt-8 font-mono-tech text-left">
+        <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
+          <div class="text-3xl font-extrabold text-white">1.6 GB</div>
+          <div class="text-xs text-[#AAB2BE] mt-1">RAM en reposo (vs 6GB de Windows)</div>
+        </div>
+        <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
+          <div class="text-3xl font-extrabold text-white">4.20 GHz</div>
+          <div class="text-xs text-[#AAB2BE] mt-1">Potencia Intel sin telemetría</div>
+        </div>
+        <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
+          <div class="text-3xl font-extrabold text-[#F62424]">0%</div>
+          <div class="text-xs text-[#AAB2BE] mt-1">Rastreo corporativo ni bloatware</div>
+        </div>
+        <div class="p-4 bg-white/5 border border-white/10 rounded-xl">
+          <div class="text-3xl font-extrabold text-white">100%</div>
+          <div class="text-xs text-[#AAB2BE] mt-1">Tornillos estándar y reparable</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 2: OMARCHY OS // PRESENTACIÓN REAL DEL ESCRITORIO  -->
+  <!-- ========================================================= -->
+  <section id="omarchy" class="py-24 px-4 md:px-8 border-b border-white/10 bg-[#0E1013]">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="font-mono-tech text-xs text-[#F62424] font-bold uppercase tracking-widest">02 // EL ENTORNO DE TRABAJO</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white">
+          Omarchy OS.<br>
+          <span class="font-serif-apple italic font-normal text-[#AAB2BE]">Velocidad pura sobre Arch Linux.</span>
+        </h2>
+        <p class="text-sm md:text-base text-[#AAB2BE] leading-relaxed">
+          Preconfigurado por el taller con el tema oficial <strong>Lizarbe Light</strong>: estética técnica inspirada en planos isométricos, iconografía en rojo de taller y mosaico dinámico para tus proyectos.
+        </p>
+      </div>
+
+      <!-- Selector de Vistas Reales del Escritorio -->
+      <div class="flex flex-wrap items-center justify-center gap-2 font-mono-tech text-xs">
+        <button onclick="setDesktopScreenshot('clean')" id="tab-clean" class="px-4 py-2 rounded-lg bg-[#F62424] text-white font-bold transition-all flex items-center gap-2">
+          <span>✦</span> Matriz Isométrica 30° (Limpio)
+        </button>
+        <button onclick="setDesktopScreenshot('tiled')" id="tab-tiled" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#AAB2BE] transition-all flex items-center gap-2">
+          <span>▦</span> Mosaico &amp; Ventanas (Tiling)
+        </button>
+        <button onclick="setDesktopScreenshot('fastfetch')" id="tab-fastfetch" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#AAB2BE] transition-all flex items-center gap-2">
+          <span>⚡</span> Fastfetch &amp; Rendimiento
+        </button>
+        <button onclick="setDesktopScreenshot('cliamp')" id="tab-cliamp" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#AAB2BE] transition-all flex items-center gap-2">
+          <span>♬</span> Reproductor CLIAMP
+        </button>
+      </div>
+
+      <!-- MARCO DEL MONITOR STUDIO // RENDER DE PANTALLA REAL DE LEONARDO -->
+      <div class="max-w-6xl mx-auto rounded-2xl border-2 border-white/20 bg-[#F7F5F0] overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.8)] relative">
+        
+        <!-- BARRA SUPERIOR EXACTA DE OMARCHY (PIXEL-PERFECT CON TU SCREENSHOT) -->
+        <div class="w-full bg-[#F7F5F0] border-b border-[#121418]/15 px-4 py-1.5 flex items-center justify-between font-mono-tech text-xs text-[#121418] select-none">
+          
+          <!-- Izquierda: Iconos de Ventana y Menú -->
+          <div class="flex items-center gap-2">
+            <span class="w-3.5 h-3.5 border border-[#121418] rounded-sm flex items-center justify-center text-[9px] font-bold">◻</span>
+            <span class="w-3.5 h-3.5 border border-[#121418] rounded-sm flex items-center justify-center text-[9px] font-bold">▶</span>
+          </div>
+
+          <!-- Centro: Workspaces y Reloj con Batería/Red -->
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 font-bold">
+              <span class="opacity-40">1</span>
+              <span class="opacity-40">2</span>
+              <span class="opacity-40">3</span>
+              <span class="bg-[#121418] text-white px-1.5 py-0.2 rounded text-[11px]">4</span>
+              <span class="opacity-40">5</span>
+            </div>
+            <span class="text-[#555A62]">•</span>
+            <span class="font-bold">Sat 26 Sep 1:58 PM</span>
+            <span class="text-[#121418]">🗲</span>
+            <span class="text-[#121418]">≈</span>
+          </div>
+
+          <!-- Derecha: Widgets (Tray, Clima, Audio, Power) -->
+          <div class="flex items-center gap-2.5 text-xs text-[#121418]">
+            <span class="text-[10px]">&lt;</span>
+            <span>☁</span>
+            <span>🔊</span>
+            <span class="text-sm">⏻</span>
+          </div>
+
+        </div>
+
+        <!-- CONTENEDOR DE LA CAPTURA REAL DE LEONARDO -->
+        <div class="relative w-full aspect-[16/9] bg-[#F7F5F0] overflow-hidden flex items-center justify-center">
+          <img id="desktop-img" src="assets/desktop_clean.png" alt="Escritorio Omarchy Lizarbe Light" class="w-full h-full object-contain transition-opacity duration-300">
+        </div>
+
+        <!-- Pie explicativo de la interfaz -->
+        <div class="p-4 bg-[#121418] text-[#AAB2BE] font-mono-tech text-xs flex flex-col md:flex-row items-center justify-between gap-2 border-t border-[#32363C]">
+          <div class="flex items-center gap-2">
+            <span class="text-[#F62424] font-bold">✦ CARACTERÍSTICA:</span>
+            <span id="feature-desc" class="text-white">Matriz isométrica a 30° con el cubo oficial Lizarbe y la chispa en rojo de taller.</span>
+          </div>
+          <span class="text-[10px] text-[#757D8A]">HYPRLAND WAYLAND • OMARCHY 4.0</span>
+        </div>
+
+      </div>
+
+      <!-- DESGLOSE DE 3 VENTAJAS DEL SISTEMA -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 font-mono-tech text-xs">
+        
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-2">
+          <div class="text-[#F62424] font-bold text-sm uppercase">1. Borde Activo Quirúrgico</div>
+          <p class="text-[#AAB2BE] leading-relaxed">
+            Las ventanas activas se resaltan con un filete rojo de 1px (<code class="text-white">#F62424</code>). Sabes exactamente dónde está tu foco sin sombras exageradas ni distracciones.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-2">
+          <div class="text-[#F62424] font-bold text-sm uppercase">2. Iconografía Lizarbe-Red</div>
+          <p class="text-[#AAB2BE] leading-relaxed">
+            Carpetas y accesos directos vectoriales con el sello visual del taller: limpios, de alto contraste sobre fondo blanco y sin bloatware visual.
+          </p>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-2">
+          <div class="text-[#F62424] font-bold text-sm uppercase">3. Terminal Integrada con IA</div>
+          <p class="text-[#AAB2BE] leading-relaxed">
+            Acceso instantáneo con <span class="bg-white/10 px-1 rounded text-white">Super + Enter</span> a herramientas CLI, reproductores tipo CLIAMP, git y soporte para agentes de IA locales.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 3: EL MANIFIESTO // DERECHO A REPARAR             -->
+  <!-- ========================================================= -->
+  <section id="filosofia" class="py-24 px-4 md:px-8 border-b border-white/10 bg-studio">
+    <div class="max-w-4xl mx-auto space-y-8 text-center">
+      
+      <span class="font-mono-tech text-xs text-[#F62424] font-bold uppercase tracking-widest">03 // DECLARACIÓN DE PRINCIPIOS</span>
+      
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">
+        "Tu computadora, tus reglas."
+      </h2>
+
+      <!-- Manifiesto Literal Escrito por Leonardo -->
+      <blockquote class="text-lg md:text-2xl text-[#D2D7E1] font-serif-apple italic leading-relaxed border-y border-white/15 py-8">
+        "Computadoras de piezas soldadas, sistemas llenos de telemetría y un sistema operativo que no te pertenece y con el poder de decir cuándo ya no podrás usarlo. La línea de computadoras Lizarbe trata de cambiar aquello; computadoras 100% personales, duraderas y con el control total del usuario."
+      </blockquote>
+
+      <!-- La Regla de Oro -->
+      <div class="p-6 bg-white/5 border-2 border-[#F62424] rounded-2xl max-w-xl mx-auto space-y-2">
+        <div class="font-mono-tech text-sm font-bold text-[#F62424] uppercase tracking-wider">
+          ✦ CLÁUSULA INNEGOCIABLE DE TALLER
+        </div>
+        <p class="text-base text-white font-bold">
+          La apertura de la máquina no invalida la garantía.
+        </p>
+        <p class="text-xs font-mono-tech text-[#AAB2BE]">
+          Ábrela, límpiala, agrégale memoria RAM o cambia de tarjeta gráfica cuando quieras. Es tuya.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 4: LAS 3 LÍNEAS DE COMPUTADORAS // COMPARATIVA    -->
+  <!-- ========================================================= -->
+  <section id="modelos" class="py-24 px-4 md:px-8 border-b border-white/10 bg-[#0E1013]">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/15 pb-4">
+        <div>
+          <span class="font-mono-tech text-xs text-[#F62424] font-bold uppercase tracking-widest">04 // ARQUITECTURA DE ENSAMBLES</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-1">La Línea de Computadoras Lizarbe</h2>
+        </div>
+        <p class="font-mono-tech text-xs text-[#AAB2BE] max-w-sm">
+          Mismo chasis modular con asas, mismo sistema Omarchy, graduadas según la exigencia de tus proyectos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- BASE -->
+        <div class="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-8">
+          <div>
+            <div class="font-mono-tech text-xs text-[#AAB2BE] pb-3 border-b border-white/10 flex justify-between">
+              <span>GAMA 01</span>
+              <span class="text-white font-bold">ESTUDIO &amp; CREACIÓN</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-white mt-4">Lizarbe BASE</h3>
+            <p class="text-xs text-[#AAB2BE] mt-2 leading-relaxed">
+              Para programar, escribir, navegar y estudiar con absoluta fluidez. Consumo mínimo de energía y sin demoras.
+            </p>
+            <ul class="font-mono-tech text-xs mt-6 space-y-2.5 text-[#D2D7E1]">
+              <li>• CPU: 4 Núcleos eficientes</li>
+              <li>• RAM: 8 a 16 GB DDR4</li>
+              <li>• SSD NVMe o SATA rápido</li>
+              <li>• Chasis modular Cooler Master</li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-white/10 font-mono-tech text-xs text-[#AAB2BE]">
+            ENFOQUE: Tu primer paso en libertad digital
+          </div>
+        </div>
+
+        <!-- ALMA (El Modelo Fundacional) -->
+        <div class="p-8 rounded-2xl bg-gradient-to-b from-[#1C1F26] to-[#121418] border-2 border-[#F62424] relative flex flex-col justify-between space-y-8 shadow-2xl shadow-[#F62424]/10">
+          <div class="absolute -top-3.5 right-6 bg-[#F62424] text-white font-mono-tech text-[10px] font-bold px-3 py-1 uppercase tracking-wider rounded-full">
+            Modelo de Vitrina
+          </div>
+          <div>
+            <div class="font-mono-tech text-xs text-[#F62424] pb-3 border-b border-[#F62424]/30 flex justify-between">
+              <span>GAMA 02</span>
+              <span class="font-bold">DESARROLLO &amp; DISEÑO</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-white mt-4">Lizarbe ALMA</h3>
+            <p class="text-xs text-[#AAB2BE] mt-2 leading-relaxed">
+              El punto de equilibrio perfecto. Desarrollo de software, diseño gráfico, edición multimedia y multitarea intensiva.
+            </p>
+            <ul class="font-mono-tech text-xs mt-6 space-y-2.5 text-white">
+              <li>• CPU: Intel Core i3 / i5 (hasta 4.20 GHz)</li>
+              <li>• RAM: 16 a 32 GB Dual-Channel</li>
+              <li>• Almacenamiento SSD 480 GB a 1 TB</li>
+              <li>• Ranura PCIe x16 libre para GPU dedicada</li>
+              <li>• Fuente certificada 600W 80+ Bronze</li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-[#F62424]/30 font-mono-tech text-xs text-[#F62424] font-bold">
+            UNIDAD FUNDACIONAL #01: Disponible en taller
+          </div>
+        </div>
+
+        <!-- TALLER -->
+        <div class="p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col justify-between space-y-8">
+          <div>
+            <div class="font-mono-tech text-xs text-[#AAB2BE] pb-3 border-b border-white/10 flex justify-between">
+              <span>GAMA 03</span>
+              <span class="text-[#F62424] font-bold">IA LOCAL &amp; 3D</span>
+            </div>
+            <h3 class="text-3xl font-extrabold text-white mt-4">Lizarbe TALLER</h3>
+            <p class="text-xs text-[#AAB2BE] mt-2 leading-relaxed">
+              Poder masivo para creadores 3D, animación, compilaciones pesadas y ejecución de modelos de IA locales (LLMs) con Ollama.
+            </p>
+            <ul class="font-mono-tech text-xs mt-6 space-y-2.5 text-[#D2D7E1]">
+              <li>• CPU: Intel i7 o AMD Ryzen de última gama</li>
+              <li>• RAM: 32 a 64 GB de alta frecuencia</li>
+              <li>• GPU: Aceleración dedicada NVIDIA / AMD</li>
+              <li>• Entornos Docker &amp; PyTorch listos</li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-white/10 font-mono-tech text-xs text-[#AAB2BE]">
+            ENFOQUE: Computación pesada sin intermediarios
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 5: ATAJOS DE TECLADO // GUÍA RÁPIDA               -->
+  <!-- ========================================================= -->
+  <section id="atajos" class="py-24 px-4 md:px-8 border-b border-white/10 bg-studio">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/15 pb-4">
+        <div>
+          <span class="font-mono-tech text-xs text-[#F62424] font-bold uppercase tracking-widest">05 // VELOCIDAD AL VOLANTE</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white mt-1">Atajos Esenciales de Omarchy</h2>
+        </div>
+        <p class="font-mono-tech text-xs text-[#AAB2BE]">
+          La tecla <span class="bg-white text-black font-bold px-1.5 py-0.5 rounded text-[10px]">Super</span> es la tecla Windows/Cmd de tu teclado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono-tech text-xs">
+        
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-3">
+          <div class="text-[#F62424] font-bold uppercase tracking-wider pb-2 border-b border-white/10">Lanzadores</div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Menú de Apps:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + Espacio</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Terminal:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + Enter</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Navegador:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + Shift + B</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Archivos:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + Shift + F</span>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-3">
+          <div class="text-[#F62424] font-bold uppercase tracking-wider pb-2 border-b border-white/10">Ventanas</div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Cerrar Ventana:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + W</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Pantalla Completa:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + F</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Flotante / Mosaico:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + T</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Cambiar División:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + J</span>
+          </div>
+        </div>
+
+        <div class="p-6 bg-white/5 border border-white/10 rounded-xl space-y-3">
+          <div class="text-[#F62424] font-bold uppercase tracking-wider pb-2 border-b border-white/10">Sistema</div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Espacios (1..9):</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + [1..9]</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Menú Apagar / Lock:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + ESC</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Portapapeles:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + Ctrl + V</span>
+          </div>
+          <div class="flex justify-between items-center py-1">
+            <span class="text-[#AAB2BE]">Guía Completa:</span>
+            <span class="bg-white text-black font-bold px-2 py-0.5 rounded text-[11px]">Super + K</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECCIÓN 6: SOPORTE Y CONTACTO DIRECTO CON EL TALLER       -->
+  <!-- ========================================================= -->
+  <section id="soporte" class="py-24 px-4 md:px-8 bg-studio">
+    <div class="max-w-4xl mx-auto rounded-3xl border border-white/20 bg-white/5 backdrop-blur-xl p-8 md:p-14 text-center space-y-8 shadow-2xl">
+      
+      <div class="w-14 h-14 bg-[#F62424] text-white rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold shadow-lg shadow-[#F62424]/30">
+        ✦
+      </div>
+
+      <div class="space-y-3">
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#F62424] font-bold">RESPALDO HUMANO Y TÉCNICO</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Soporte directo con el Taller</h2>
+        <p class="text-sm md:text-base text-[#AAB2BE] max-w-xl mx-auto leading-relaxed">
+          Sin call centers, sin bots automatizados. Tienes contacto directo con Leonardo Lizarbe para cualquier consulta sobre tu máquina, expansión de piezas o dudas del sistema.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 font-mono-tech text-xs">
+        <a href="https://wa.me/51923488910?text=Hola%20Taller%20Lizarbe,%20tengo%20una%20consulta%20técnica%20sobre%20mi%20computadora" 
+           target="_blank" 
+           class="w-full sm:w-auto px-8 py-4 bg-[#F62424] hover:bg-[#d91e1e] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#F62424]/20 flex items-center justify-center gap-2">
+          <span>💬</span>
+          <span>WHATSAPP DIRECTO: +51 923 488 910</span>
+        </a>
+
+        <a href="mailto:leonardo.lizarbe.tito.1010@gmail.com" 
+           class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/20 transition-all flex items-center justify-center gap-2">
+          <span>✉</span>
+          <span>leonardo.lizarbe.tito.1010@gmail.com</span>
+        </a>
+      </div>
+
+      <div class="pt-4 border-t border-white/10 font-mono-tech text-xs text-[#AAB2BE]">
+        TALLER LIZARBE // Lima, Perú • Consultas gratuitas para propietarios
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- PIE DE PÁGINA                                             -->
+  <!-- ========================================================= -->
+  <footer class="bg-[#0B0C0E] text-[#AAB2BE] py-10 px-4 md:px-8 font-mono-tech text-xs border-t border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 bg-[#F62424] text-white rounded flex items-center justify-center font-bold text-[10px]">
+          ✦
+        </div>
+        <div>
+          <span class="text-white font-bold">LIZARBE // TALLER DE CÓMPUTO &amp; SISTEMAS</span>
+          <span class="block text-[10px] text-[#757D8A]">Herramientas de trabajo con alma técnica • Lima, Perú</span>
+        </div>
+      </div>
+      <div class="text-[11px] text-[#757D8A]">
+        GitHub Pages: <code class="text-white">lizarbe513.github.io/Lizarbe-Omarchy-Theme</code>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- SCRIPTS INTERACTIVOS // THREE.JS 3D CHASSIS & DESKTOP TABS-->
+  <!-- ========================================================= -->
+  <script>
+    // ---------------------------------------------------------
+    // 1. SELECTOR DE CAPTURAS DEL ESCRITORIO OMARCHY
+    // ---------------------------------------------------------
+    const desktopData = {
+      clean: {
+        src: 'assets/desktop_clean.png',
+        desc: 'Matriz isométrica a 30° con el cubo oficial Lizarbe y la chispa en rojo de taller.'
+      },
+      tiled: {
+        src: 'assets/desktop_tiled.png',
+        desc: 'Mosaico dinámico (Tiling): reproductor CLIAMP, analizador de espectro de audio y gestor de archivos con iconos Lizarbe-Red.'
+      },
+      fastfetch: {
+        src: 'assets/desktop_fastfetch.png',
+        desc: 'Terminal con Fastfetch: logo ASCII Lizarbe, procesador Intel, kernel Linux 7.2 y borde activo de 1px en rojo quirúrgico.'
+      },
+      cliamp: {
+        src: 'assets/desktop_cliamp.png',
+        desc: 'Reproductor CLIAMP a pantalla completa: ecualizador estéreo, lista de reproducción y atajos de teclado de terminal.'
+      }
+    };
+
+    function setDesktopScreenshot(key) {
+      const img = document.getElementById('desktop-img');
+      const desc = document.getElementById('feature-desc');
+      
+      // Transición de opacidad
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = desktopData[key].src;
+        desc.innerText = desktopData[key].desc;
+        img.style.opacity = '1';
+      }, 150);
+
+      // Actualizar estilo de tabs
+      ['clean', 'tiled', 'fastfetch', 'cliamp'].forEach(k => {
+        const btn = document.getElementById(`tab-${k}`);
+        if (k === key) {
+          btn.className = 'px-4 py-2 rounded-lg bg-[#F62424] text-white font-bold transition-all flex items-center gap-2';
+        } else {
+          btn.className = 'px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#AAB2BE] transition-all flex items-center gap-2';
+        }
+      });
+    }
+
+    // ---------------------------------------------------------
+    // 2. TOGGLE ENTRE MODELO 3D Y FOTO DE ESTUDIO
+    // ---------------------------------------------------------
+    function switchChassisView(mode) {
+      const container3D = document.getElementById('canvas-3d-container');
+      const containerPhoto = document.getElementById('photo-container');
+      const instruction3D = document.getElementById('instruction-3d');
+      const btn3D = document.getElementById('btn-view-3d');
+      const btnPhoto = document.getElementById('btn-view-photo');
+
+      if (mode === '3d') {
+        container3D.classList.remove('hidden');
+        containerPhoto.classList.add('hidden');
+        instruction3D.classList.remove('hidden');
+        btn3D.className = 'px-4 py-1.5 rounded-md bg-[#F62424] text-white font-bold transition-all';
+        btnPhoto.className = 'px-4 py-1.5 rounded-md text-[#AAB2BE] hover:text-white transition-all';
+      } else {
+        container3D.classList.add('hidden');
+        containerPhoto.classList.remove('hidden');
+        instruction3D.classList.add('hidden');
+        btnPhoto.className = 'px-4 py-1.5 rounded-md bg-[#F62424] text-white font-bold transition-all';
+        btn3D.className = 'px-4 py-1.5 rounded-md text-[#AAB2BE] hover:text-white transition-all';
+      }
+    }
+
+    // ---------------------------------------------------------
+    // 3. MODELO 3D PROCEDURAL DEL COOLER MASTER QUBE 500 (THREE.JS)
+    // ---------------------------------------------------------
+    function init3DChassis() {
+      const container = document.getElementById('canvas-3d-container');
+      if (!container || typeof THREE === 'undefined') return;
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // Escena, Cámara y Renderer
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
+      camera.position.set(3.2, 2.2, 4.5);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      container.appendChild(renderer.domElement);
+
+      // Luces de Estudio Estilo Apple
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+      keyLight.position.set(5, 8, 5);
+      scene.add(keyLight);
+
+      const rimLight = new THREE.DirectionalLight(0xF62424, 1.8); // Acento rojo de taller
+      rimLight.position.set(-6, 3, -4);
+      scene.add(rimLight);
+
+      const fillLight = new THREE.DirectionalLight(0x7090b0, 1.2);
+      fillLight.position.set(-4, -2, 4);
+      scene.add(fillLight);
+
+      // GRUPO DEL GABINETE
+      const chassisGroup = new THREE.Group();
+      scene.add(chassisGroup);
+
+      // Textura procedural de la rejilla perforada (Pegboard)
+      const canvasTex = document.createElement('canvas');
+      canvasTex.width = 128;
+      canvasTex.height = 128;
+      const ctx = canvasTex.getContext('2d');
+      ctx.fillStyle = '#181A1E';
+      ctx.fillRect(0, 0, 128, 128);
+      ctx.fillStyle = '#080809';
+      for (let x = 8; x < 128; x += 16) {
+        for (let y = 8; y < 128; y += 16) {
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      const pegboardTexture = new THREE.CanvasTexture(canvasTex);
+      pegboardTexture.wrapS = THREE.RepeatWrapping;
+      pegboardTexture.wrapT = THREE.RepeatWrapping;
+      pegboardTexture.repeat.set(6, 6);
+
+      // Materiales
+      const blackMetal = new THREE.MeshStandardMaterial({
+        color: 0x1A1C20,
+        roughness: 0.45,
+        metalness: 0.8
+      });
+
+      const pegboardMaterial = new THREE.MeshStandardMaterial({
+        map: pegboardTexture,
+        roughness: 0.6,
+        metalness: 0.6
+      });
+
+      const glassMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x111316,
+        transparent: true,
+        opacity: 0.45,
+        roughness: 0.1,
+        metalness: 0.1,
+        transmission: 0.7,
+        ior: 1.5
+      });
+
+      const steelChrome = new THREE.MeshStandardMaterial({
+        color: 0xE0E4EB,
+        roughness: 0.15,
+        metalness: 0.95
+      });
+
+      // 1. CUERPO PRINCIPAL DEL CHASIS QUBE 500 (Proporciones reales: 21x38x38 cm)
+      const w = 1.6, h = 2.4, d = 2.6; // Proporciones normalizadas
+      const bodyGeo = new THREE.BoxGeometry(w, h, d);
+      
+      // Panel frontal y superior con pegboard, lateral con vidrio
+      const materials = [
+        glassMaterial,    // Lateral derecho (vidrio templado)
+        blackMetal,       // Lateral izquierdo (metal sólido)
+        pegboardMaterial, // Superior (perforado)
+        blackMetal,       // Inferior
+        pegboardMaterial, // Frontal (perforado)
+        blackMetal        // Trasero (puertos)
+      ];
+      const mainChassis = new THREE.Mesh(bodyGeo, materials);
+      chassisGroup.add(mainChassis);
+
+      // 2. ASAS SUPERIORES DE TRANSPORTE (Tubulares dobles estilo Qube 500)
+      function createHandle(zOffset) {
+        const handleGroup = new THREE.Group();
+        const r = 0.045;
+        
+        // Barra horizontal
+        const barGeo = new THREE.CylinderGeometry(r, r, w * 0.75, 16);
+        const bar = new THREE.Mesh(barGeo, steelChrome);
+        bar.rotation.z = Math.PI / 2;
+        bar.position.y = (h / 2) + 0.28;
+        handleGroup.add(bar);
+
+        // Patas verticales
+        const legGeo = new THREE.CylinderGeometry(r, r, 0.3, 16);
+        const leg1 = new THREE.Mesh(legGeo, steelChrome);
+        leg1.position.set(-(w * 0.375), (h / 2) + 0.15, 0);
+        handleGroup.add(leg1);
+
+        const leg2 = new THREE.Mesh(legGeo, steelChrome);
+        leg2.position.set((w * 0.375), (h / 2) + 0.15, 0);
+        handleGroup.add(leg2);
+
+        handleGroup.position.z = zOffset;
+        return handleGroup;
+      }
+
+      chassisGroup.add(createHandle(d * 0.3));
+      chassisGroup.add(createHandle(-d * 0.3));
+
+      // 3. PATAS INFERIORES MODULARES (4 patas cilíndricas)
+      const footGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.12, 16);
+      const footMat = new THREE.MeshStandardMaterial({ color: 0x0A0B0D, roughness: 0.9 });
+      
+      [[-w/2.5, -d/2.6], [w/2.5, -d/2.6], [-w/2.5, d/2.6], [w/2.5, d/2.6]].forEach(([fx, fz]) => {
+        const foot = new THREE.Mesh(footGeo, footMat);
+        foot.position.set(fx, -(h / 2) - 0.06, fz);
+        chassisGroup.add(foot);
+      });
+
+      // 4. COMPONENTES INTERNOS VISIBLES TRAS EL CRISTAL
+      // Placa base
+      const moboGeo = new THREE.BoxGeometry(0.04, h * 0.8, d * 0.7);
+      const moboMat = new THREE.MeshStandardMaterial({ color: 0x1E2229, roughness: 0.8 });
+      const mobo = new THREE.Mesh(moboGeo, moboMat);
+      mobo.position.set(-(w * 0.4), 0, 0);
+      chassisGroup.add(mobo);
+
+      // Disipador de CPU
+      const coolerGeo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+      const coolerMat = new THREE.MeshStandardMaterial({ color: 0x2C3038, roughness: 0.3, metalness: 0.7 });
+      const cooler = new THREE.Mesh(coolerGeo, coolerMat);
+      cooler.position.set(-(w * 0.1), h * 0.15, -0.1);
+      chassisGroup.add(cooler);
+
+      // Memoria RAM con iluminación sutil en rojo Lizarbe
+      const ramGeo = new THREE.BoxGeometry(0.05, 0.5, 0.2);
+      const ramMat = new THREE.MeshBasicMaterial({ color: 0xF62424 });
+      const ram1 = new THREE.Mesh(ramGeo, ramMat);
+      ram1.position.set(-(w * 0.08), h * 0.15, 0.4);
+      chassisGroup.add(ram1);
+
+      // INTERACCIÓN CON RATÓN Y TOQUE (ROTACIÓN ORBITAL SUAVE)
+      let isDragging = false;
+      let previousMousePosition = { x: 0, y: 0 };
+      let rotationSpeed = 0.005;
+      let autoRotate = true;
+
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        autoRotate = false;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        setTimeout(() => { autoRotate = true; }, 3000); // Reanuda auto-rotación tras inactividad
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+
+        chassisGroup.rotation.y += deltaX * rotationSpeed;
+        chassisGroup.rotation.x += deltaY * rotationSpeed;
+        
+        // Limitar rotación vertical para mantener estética
+        chassisGroup.rotation.x = Math.max(-0.4, Math.min(0.4, chassisGroup.rotation.x));
+
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      // Soporte táctil móvil
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          autoRotate = false;
+          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+
+        chassisGroup.rotation.y += deltaX * rotationSpeed * 1.5;
+        chassisGroup.rotation.x += deltaY * rotationSpeed * 1.5;
+        chassisGroup.rotation.x = Math.max(-0.4, Math.min(0.4, chassisGroup.rotation.x));
+
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+        setTimeout(() => { autoRotate = true; }, 3000);
+      });
+
+      // Loop de renderizado
+      chassisGroup.rotation.y = -0.5; // Ángulo inicial de tres cuartos
+      camera.lookAt(0, 0, 0);
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        if (autoRotate && !isDragging) {
+          chassisGroup.rotation.y += 0.003;
+        }
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Ajuste al redimensionar ventana
+      window.addEventListener('resize', () => {
+        if (!container) return;
+        const newW = container.clientWidth;
+        const newH = container.clientHeight;
+        camera.aspect = newW / newH;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newW, newH);
+      });
+    }
+
+    // Inicializar al cargar el DOM
+    window.addEventListener('DOMContentLoaded', () => {
+      init3DChassis();
+    });
+  </script>
+
+</body>
+</html>
